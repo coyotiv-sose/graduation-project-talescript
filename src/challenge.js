@@ -38,3 +38,5 @@ class Challenge {
     return this.votes
   }
 }
+
+module.exports = Challenge

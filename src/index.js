@@ -42,6 +42,8 @@
  */
 
 /**  */
+const User = require('./user')
+const Challenge = require('./challenge')
 
 /** Competition class */
 
