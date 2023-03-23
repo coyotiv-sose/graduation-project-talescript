@@ -1,6 +1,9 @@
 /**
- * gamify the challenge class, add logic for user votes on completed challenges. The creator of the recipe can either determine the winner, or leave it to other users to determine if the challenger won or did not win
-
+ * gamify the challenge class, add logic for user votes
+ * on completed challenges. The creator of the recipe
+ * can either determine the winner, or leave it to
+ * other users to determine if the challenger won or
+ * did not win
  */
 
 class Challenge {
