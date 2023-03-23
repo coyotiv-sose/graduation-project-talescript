@@ -12,19 +12,26 @@
  * - Sourdough Calculator: bakers percentages, hydration, and quantities
  * a recipe will yield.
  * - Recipe Manager: keep track of recipes and ingredients, to make
- * notes about each recipe. Invetory manager, recipe costing, and delivery tracking.
- * - Temperature and Time Tracker: keep track of temperatures and times of baking process.
- * - Step-by-Step Instructions: provide step-by-step instructions for each stage of the baking process.
+ * notes about each recipe. Invetory manager, recipe costing, and
+ * delivery tracking.
+ * - Temperature and Time Tracker: keep track of temperatures and times
+ * of baking process.
+ * - Step-by-Step Instructions: provide step-by-step instructions for
+ * each stage of the baking process.
  *
  * Gamification:
- * - Achievements and badges: earn badges for completing tasks. Such as mastering a particular bread recipe
- * or baking consistently for a certain amount of time.
- * - Leaderboards: compete with other bakers to see who can bake the best bread. Encourage friendly competition
- * and sharing of recipes. Earn points for completing recipes, sharing their experiences, and participating
- * in challenges.
- * - Challenge friends or other users to bake a particular recipe. Then vote on the best result.
+ * - Achievements and badges: earn badges for completing tasks. Such
+ * as mastering a particular bread recipe or baking consistently for
+ * a certain amount of time.
+ * - Leaderboards: compete with other bakers to see who can bake the
+ * best bread. Encourage friendly competition and sharing of recipes.
+ * Earn points for completing recipes, sharing their experiences,
+ * and participating in challenges.
+ * - Challenge friends or other users to bake a particular recipe.
+ * Then vote on the best result.
  *
- * Sharing: Users can share their recipes and experiences with other users, tips and tricks and photos.
+ * Sharing: Users can share their recipes and experiences with other
+ * users, tips and tricks and photos.
  *
  * Interactivity ideas:
  * - Discussion forums
@@ -51,3 +58,27 @@ class User {
     this.ig = ig
   }
 }
+
+/** Challenges class */
+
+/** Competition class */
+
+/** Recipe class */
+
+/** Inventory class */
+
+/** Delivery class */
+
+/** Temperature and time tracker class */
+
+/** Step-by-step instructions class */
+
+/** Achievements and badges class */
+
+/** Leaderboards class */
+
+/** Sharing class */
+
+/** Forum class */
+
+/** Virtual events class */
