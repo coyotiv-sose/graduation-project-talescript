@@ -43,13 +43,12 @@
 
 /**  */
 class User {
-  userContent = {
-    recipes: [],
-    images: [],
-    notes: [],
-    badges: [],
-    achievmements: [],
-  }
+  recipes = []
+  images = []
+  notes = []
+  badges = []
+  achievmements = []
+  inventory = []
 
   constructor(name, email, password, ig) {
     this.name = name
