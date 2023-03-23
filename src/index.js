@@ -36,7 +36,6 @@
 
 /**  */
 class User {
-  // maybe an object would be better containing recipes and images?
   userContent = {
     recipes: [],
     images: [],
