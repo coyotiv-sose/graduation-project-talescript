@@ -35,3 +35,20 @@
  */
 
 /**  */
+class User {
+  // maybe an object would be better containing recipes and images?
+  userContent = {
+    recipes: [],
+    images: [],
+    notes: [],
+    badges: [],
+    achievmements: [],
+  }
+
+  constructor(name, email, password, ig) {
+    this.name = name
+    this.email = email
+    this.password = password
+    this.ig = ig
+  }
+}
