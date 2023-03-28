@@ -1,4 +1,4 @@
-class User {
+/* class User {
   constructor(name) {
     this.name = name
     this.recipes = []
@@ -34,3 +34,4 @@ class User {
 }
 
 module.exports = User
+ */

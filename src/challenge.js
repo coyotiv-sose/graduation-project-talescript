@@ -6,7 +6,7 @@
  * did not win
  */
 
-class Challenge {
+/* class Challenge {
   constructor(createdBy, recipe, challenger) {
     this.createdBy = createdBy
     this.recipe = recipe
@@ -40,3 +40,4 @@ class Challenge {
 }
 
 module.exports = Challenge
+ */
