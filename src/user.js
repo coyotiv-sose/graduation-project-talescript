@@ -1,37 +1,63 @@
-/* class User {
-  constructor(name) {
+class User {
+  constructor(name, email, password) {
+    this.id = Math.floor(Math.random() * 1000000) // generate a random id
     this.name = name
-    this.recipes = []
+    this.email = email
+    this.password = password
+    this.recipes = {}
+    this.notes = {}
+    this.pictures = {}
   }
 
-  addRecipe(recipe) {
-    this.recipes.push(recipe)
+  createRecipe(recipeId, recipe) {
+    this.recipes[recipeId] = recipe
+    return this.recipes[recipeId]
   }
 
-  removeRecipe(recipe) {
-    this.recipes = this.recipes.filter(r => r !== recipe)
-  }
-
-  editRecipe(recipe) {
-    this.recipes = this.recipes.map(r => {
-      if (r === recipe) {
-        return recipe
-      }
-      return r
-    })
-  }
-
-  getRecipes() {
-    return this.recipes
-  }
-
-  getProfile() {
-    return {
-      name: this.name,
-      recipes: this.recipes,
+  deleteRecipe(recipeId) {
+    if (!this.recipes[recipeId]) {
+      throw new Error(`Recipe with ID ${recipeId} not found.`)
     }
+    delete this.recipes[recipeId]
+  }
+
+  getNotes(recipeId) {
+    return this.notes[recipeId] || []
+  }
+
+  addNote(recipeId, note) {
+    const notes = this.getNotes(recipeId)
+    this.notes[recipeId] = [...notes, note]
+    return this.notes[recipeId]
+  }
+
+  deleteNoteById(recipeId, noteId) {
+    const notes = this.getNotes(recipeId)
+    const updatedNotes = notes.filter(note => note.id !== noteId)
+    if (notes.length === updatedNotes.length) {
+      throw new Error(`Note with ID ${noteId} not found.`)
+    }
+    this.notes[recipeId] = updatedNotes
+  }
+
+  getPictureUrls(recipeId) {
+    return this.pictures[recipeId] || []
+  }
+
+  addPictureUrl(recipeId, pictureUrl) {
+    const pictureUrls = this.getPictureUrls(recipeId)
+    this.pictures[recipeId] = [...pictureUrls, pictureUrl]
+    return this.pictures[recipeId]
+  }
+
+  deletePictureUrlById(recipeId, pictureUrlId) {
+    const pictureUrls = this.getPictureUrls(recipeId)
+    const updatedPictureUrls = pictureUrls.filter(pictureUrl => pictureUrl.id !== pictureUrlId)
+    if (pictureUrls.length === updatedPictureUrls.length) {
+      throw new Error(`Picture with ID ${pictureUrlId} not found.`)
+    }
+    this.pictures[recipeId] = updatedPictureUrls
   }
 }
 
-module.exports = User
- */
+export default User

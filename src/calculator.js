@@ -52,6 +52,8 @@ calculator.addOptionalIngredient('sesame seeds', 5)
 const weights = calculator.calculateWeights()
 console.log(weights)
 
+export default BakersPercentageCalculator
+
 /* class BakersPercentageCalculator {
   constructor(totalWeight, waterPercent, saltPercent, sourdoughPercent, flourPercent, sourdoughHydration = 100) {
     this.totalWeight = totalWeight
