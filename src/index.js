@@ -1,14 +1,14 @@
 // this is a bakers calculator app. It helps people calculate the sourdough recipes. Also known as bakers percentages.
 import User from './user.js'
-import Recipe from './recipe.js'
+import Recipe from './recipes.js'
 import Event from './event.js'
-import challenge from './challenge.js'
+import Challenge from './challenge.js'
 import BakersPercentageCalculator from './calculator.js'
 
 // ----------- STORE RECIPES -------------
 // With the recipes Users can calculate the weight of the ingredients they need to make the bread.
 // From the bakers percentages, Users can store the recipes.
-recipes = [
+const recipes = [
   {
     // better to return a list. Add a unique id for each recipe.
     flour: '1000.00',
@@ -42,7 +42,7 @@ console.log(event1)
 
 // create a new user and add a recipe
 const user = new User('Alice', 'alice@example.com', 'password')
-const recipe = weights // assume `weights` is defined in the previous code
+const recipe = recipes // assume `weights` is defined in the previous code
 const recipeId = 'recipe1'
 user.createRecipe(recipeId, recipe)
 console.log(user.recipes) // should output `{recipe1: {...}}`
