@@ -9,6 +9,18 @@
 // -- notes
 // -- recipes
 
+const alexander = {
+  name: "alexander",
+  email: "user@email.com",
+  notes: [],
+  recipes: []
+}
+
+// --- Tests
+console.log('user name: ', alexander.name);
+console.log('user email: ', alexander.email);
+console.log('user notes: ', alexander.notes, alexander.notes.length);
+console.log('user recipes: ', alexander.recipes, alexander.recipes.length);
 
 // - calculator
 // -- notes
