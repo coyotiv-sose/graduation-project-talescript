@@ -9,12 +9,17 @@
 // -- notes
 // -- recipes
 
-const alexander = {
-  name: "alexander",
-  email: "user@email.com",
-  notes: [],
-  recipes: []
+class User {
+  notes = [];
+  recipes = [];
+
+  constructor(name, email) {
+    this.name = name,
+    this.email = email
+  }
 }
+
+const alexander = new User('Alexander', 'user@email.com');
 
 // --- Tests
 // User tests
