@@ -21,14 +21,18 @@ class User {
 
 const alexander = new User('Alexander', 'user@email.com');
 
+
 // --- Tests
 // User tests
 console.log('user name: ', alexander.name);
 console.log('user email: ', alexander.email);
-console.log('user notes: ', alexander.notes, alexander.notes.length);
-console.log('user recipes: ', alexander.recipes, alexander.recipes.length);
+
 console.log('add recipe: ', alexander.recipes.push('flour', 'salt', 'notes'));
 console.log('add notes:', alexander.notes.push('this is a savory bread'));
+
+console.log('user notes: ', alexander.notes, 'length: ', alexander.notes.length);
+console.log('user recipes: ', alexander.recipes, 'length: ', alexander.recipes.length);
+
 console.log(alexander);
 
 // - calculator
