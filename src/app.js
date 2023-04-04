@@ -1,3 +1,9 @@
+/* MongoDB Connection String */
+/* require('dotenv').config()
+require('./database-connection')
+console.log(process.env.MONGODB_CONNECTION_STRING) */
+/* End MongoDB Connection String */
+
 var createError = require('http-errors')
 var express = require('express')
 var path = require('path')
