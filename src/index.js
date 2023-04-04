@@ -5,6 +5,8 @@ import Event from './event.js'
 import Challenge from './challenge.js'
 import BakersPercentageCalculator from './calculator.js'
 
+//axios fetch users with axios
+
 // ----------- STORE RECIPES -------------
 // With the recipes Users can calculate the weight of the ingredients they need to make the bread.
 // From the bakers percentages, Users can store the recipes.

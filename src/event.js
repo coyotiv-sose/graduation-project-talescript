@@ -11,7 +11,7 @@ class Event {
     this.endTime = endTime
   }
 
-  setVenue(venue) {
+  /*   setVenue(venue) {
     this.location = venue
   }
 
@@ -20,20 +20,24 @@ class Event {
     this.date = date
     this.startTime = startTime
     this.endTime = endTime
-  }
+  } */
 
-  displayEvent() {
-    const eventDate = new Date(this.date)
-    const formattedDate = eventDate.toLocaleDateString('en-US', {
+  // get event details instead of displayEvent...because it is already
+  // an event object..... event.details
+  /*   displayEvent() {
+
+ */
+  // const eventDate = new Date(this.date)
+  /* const formattedDate = eventDate.toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
-    })
+    }) */
 
-    console.log(`${this.name} @ ${this.location}`)
+  /*     console.log(`${this.name} @ ${this.location}`)
     console.log(`Date: ${formattedDate}`)
     console.log(`Time: ${this.startTime} - ${this.endTime}`)
-  }
+  } */
 }
 
 export default Event

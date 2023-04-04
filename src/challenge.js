@@ -22,9 +22,9 @@ class Challenge {
     this.description = description
     this.solution = solution
   }
-
+  // underscores are not set <==========================
   // Getters and setters
-  get title() {
+  /*  get title() {
     return this._title
   }
   set title(value) {
@@ -69,7 +69,7 @@ class Challenge {
   // Instance methods
   toString() {
     return `${this.title} (${this.difficulty}) - ${this.description}`
-  }
+  } */
 }
 
 export default Challenge
