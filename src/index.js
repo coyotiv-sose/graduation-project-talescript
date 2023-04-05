@@ -9,15 +9,6 @@
 // -- recipes/
 // -- events/
 
-var express = require('express')
-var router = express.Router()
-
-// GET home page
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'sourdough' })
-})
-
-module.exports = router
 
 class User {
   recipes = []
@@ -150,7 +141,7 @@ alexander.createRecipe('beer wheat honey', '04-04-2024', 'honey', 'salt', 'beer'
 
 // Notes --- need to create a method and assign it to the recipe
 alexander.notes.push('this is a savory bread')
-alexander.addNote('this should work without a problem')
+alexander.addNote('this should work without a problem') // passs in the recipe to create a note for that recipe
 
 // Events
 const alexanderEvent = alexander.createEvent('patio sale', '04.04.2023')
