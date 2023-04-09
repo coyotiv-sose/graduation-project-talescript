@@ -1,3 +1,8 @@
+/**
+ * set DEBUG=myapp:* & npm start
+ * windows only
+ */
+
 /* MongoDB Connection String */
 /* require('dotenv').config()
 require('./database-connection')
