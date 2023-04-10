@@ -25,9 +25,9 @@ class Recipe {
     // share recipe`
 
     static create(title, date, ...ingredients) {
-      const r = new Recipe(title, date, ...ingredients)
-      Recipe.list.push(r)
-      return r
+      const newRecipe = new Recipe(title, date, ...ingredients)
+      Recipe.list.push(newRecipe)
+      return newRecipe
     }
 
     static list = []
