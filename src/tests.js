@@ -19,15 +19,16 @@ const newUser = await axios.post('/users', {name: 'alex', email: 'some@ermail.co
 console.log(newUser.data);
 
 }
-main().catch(error => {
+/* main().catch(error => {
   console.log(error.message ? error.message : error)})
 
-  return;
+  return; */
+
 
 
 // // User
 // // console.log('user list start', User.list)
-// const alexander = new User('Alexander', 'user@email.com')
+const alexander = new User('Alexander', 'user@email.com')
 // alexander.save()
 
 // const alexander2 = User.create('Alexander2', 'user2@email.com')
@@ -37,10 +38,13 @@ main().catch(error => {
 
 // // Recipes
 // // returns whenever we want store it in a variable.....
-// alexander.createRecipe('this savory title', '04-04-2024', 'flour', 'bread something', 'notes')
+const firstRecipe = alexander.createRecipe('this savory title', '04-04-2024', 'flour', 'bread something', 'notes')
+
 // alexander.createRecipe('beer wheat honey', '04-04-2024', 'honey', 'salt', 'beer', 'yeast')
 // alexander2.createRecipe('beer wheat honey salt', '04-04-2024', 'honey', 'salt', 'beer', 'yeast')
-
+alexander.addNote('somethings savory', firstRecipe)
+console.log(alexander)
+console.log(alexander.recipes[0])
 
 
 // // const recipesWithBeerInTitle = User.list.map(u => u.recipes).flat().filter(r => r.title.includes('beer'))
