@@ -35,4 +35,19 @@ router.post('/', (req, res, next) => {
 })
  */
 
+// router.post('/:userId/recipes', (req, res, next) => {
+//   try {
+//     const user = User.list.find(user => user.name === req.params.userId)
+
+//     const recipe = user.createRecipe({
+//       title: req.body.title, 
+//       date: req.body.date, 
+//       ingredients: req.body.ingredients})
+//     // because of a circular error, send directly instead of the recipe 
+//     res.send({title: recipe.name, date: recipe.date, ingredients: recipe.ingredients})
+//   } catch (err) {
+//     res.status(400).send(err.message)
+//   }
+// })
+
 module.exports = router
