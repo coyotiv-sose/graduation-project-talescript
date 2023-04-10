@@ -1,6 +1,16 @@
-@startuml Person
-class Person {
+@startuml SourdoughAPP
+class User {
   name: string
-  age: number
+  email: string
+  recipes: [Recipe]
+  events: [Event]
+  notes: [Note]
+
+  constructor(name: string, email: string)
+
+  createRecipe(title: string, date: date, ...ingredients: [string])
+  addNote(recipe: Recipe)
+
+
 }
 @enduml
