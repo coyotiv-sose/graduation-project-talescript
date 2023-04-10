@@ -1,6 +1,7 @@
 /**
  * set DEBUG=myapp:* & npm start
  * windows only
+ * npx nodemon filename.js
  */
 
 /* MongoDB Connection String */
