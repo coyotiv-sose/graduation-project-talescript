@@ -1,0 +1,11 @@
+extends layout 
+
+block content
+    h1= title
+    p some text to check if it works
+    p #{user.name}
+
+    h2 Users 
+    ul 
+        each user in users 
+            li= user.name
