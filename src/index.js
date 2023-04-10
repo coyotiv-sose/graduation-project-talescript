@@ -6,9 +6,9 @@ const URL = 'http://localhost:3000/'
 
 const alexander = new User('alexander', 'hello@all.com')
 
-axios.get('http://localhost:3000/users').then(function (res) {
-    console.log(res.data)
-})
+// axios.get('http://localhost:3000/users').then(function (res) {
+//     console.log(res.data)
+// })
 
 async function main() {
 
@@ -24,10 +24,18 @@ async function main() {
         name: 'bob',
         email: 'bob@me.com'
     }).then(function (res){
-        console.log(res.data)
+        //console.log(res.data)
     })
 
     const allUsers = await axios.get(URL + 'users')
+
+    // const alexanderRecipes = await axios.post(URL + 'users/alexander/recipes', {
+    //     title: 'Sweet and sour pork',
+    //     date: Date.now(),
+    //     ingredients: ['salt', 'butter', 'olives', 'water']
+    // })
+
+
     console.log('all users: ', allUsers.data)
 }
 
