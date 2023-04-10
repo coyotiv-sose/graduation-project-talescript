@@ -11,25 +11,15 @@ const Notes = require('./note')
 const Event = require('./event')
 
 class User {
-    static list = []
+
     recipes = []
     events = []
     notes = []
-    location = []
+    //location = []
   
     constructor(name, email) {
       this.name = name
       this.email = email
-    }
-  
-    static create(name, email) {
-      const u = new User(name, email)
-      User.list.push(u)
-      return u
-    }
-  
-    save() {
-      User.list.push(this)
     }
   
     createRecipe(title, date, ...ingredients) {
@@ -39,9 +29,10 @@ class User {
     }
   
     // do these methos belong to User or in their own classes?
-    addNote(recipeNotes) {
+    addNote(recipeNotes, recipe) {
       const note = new Notes(recipeNotes)
       this.notes.push(note)
+      recipe.notes.push(note)
       return note
     }
   
@@ -83,6 +74,19 @@ class User {
     eventLocation(event) {
       return this.event
     }
+
+    static create(name, email) {
+      const newUser = new User(name, email)
+      User.list.push(newUser)
+      return newUser
+    }
+  
+    save() {
+      User.list.push(this)
+    }
+
+    static list = []
+
   }
 
 module.exports = User;
