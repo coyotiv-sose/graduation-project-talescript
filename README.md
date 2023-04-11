@@ -1,4 +1,5 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-f4981d0f882b2a3f0472912d15f9806d57e124e0fc890972558857b51b24a6f9.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10553841)
+
 # Coyotiv School of Software Engineering
 
 ## Node & PlantUML Starter Template
@@ -56,9 +57,37 @@ If you what to visualize a preview of the **class.puml** file or another **_\*.p
 - _Linux/Windows_: **Alt + D**
   The above commands will automatically open your a window and will show you live any updates that you make on the file.
 
----
+- _Docker_
+  docker run -it alpine sh
+  -it -> interactive, terminal
 
-_Now that we are ready, let's have some coding fun!_
+  docker run -it node:alpine sh
+
+  docker pull node:alpine #update
+
+  docker run -it node:alpine node #starts with node instead
+
+  docker build -t {node:alpine - name} . {current directory - needs a dot. Needs a project folder or will be install in
+  root }
+
+  docker build -t <name> -f Dockerfile .
+
+  whenever you make a code change you
+  have to build the image again
+  docker build -t <name> -f Dockerfile .
+  docker run <name>
+
+  To get access by the browser
+  docker run -p 3000:3000 <name>
+
+  docker run -p 3000:3000 -p 35729:35729 -e MONGODB_USERNAME -e MONGODB_PASSWORD -e
+  MONGODB_DATABASE --name <name> -v "$(pwd)"/src:/src node:alpine
+
+  docker build -t <name> -f Dockerfile .
+
+  docker rmi -f $(docker images -aq)
+
+  \_Now that we are ready, let's have some coding fun!\*
 
 ---
 
