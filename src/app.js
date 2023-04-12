@@ -4,10 +4,10 @@
  * npx nodemon filename.js
  */
 
-/* MongoDB Connection String */
-/* require('dotenv').config()
+// MongoDB Connection String
+require('dotenv').config()
 require('./database-connection')
-console.log(process.env.MONGODB_CONNECTION_STRING) */
+//console.log(process.env.MONGODB_CONNECTION_STRING)
 /* End MongoDB Connection String */
 
 var createError = require('http-errors')
@@ -18,7 +18,7 @@ var logger = require('morgan')
 
 var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/users')
-const recipeRouter = require('./routes/recipes') 
+const recipeRouter = require('./routes/recipes')
 
 var app = express()
 
@@ -35,7 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/recipes', recipeRouter)
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
