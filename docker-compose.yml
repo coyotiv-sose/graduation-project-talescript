@@ -5,19 +5,19 @@ services:
     image: sourdough-api
     build:
       context: .
-      dockerfile: Dockerfile.production
+      dockerfile: Dockerfile
     depends_on:
       - mongodb
     # docker build -t sourdough-api
     # docker run -p 3000:3000 --name api sourdough-api
     ports:
       - '3000:3000'
-    #volumes: #remove when in production
-    #  - ./src:/app/src
+    volumes: #remove when in production
+      - ./src:/app/src
     #env_file:
     #  - .env
     environment: # where is this defined?
-      - MONGODB_CONNECTION_STRING=MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/sourdough
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/sourdough
 
   mongodb:
     image: mongo
