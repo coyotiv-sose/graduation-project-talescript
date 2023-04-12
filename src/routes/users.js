@@ -1,25 +1,22 @@
-var express = require('express')
-var router = express.Router()
-var User = require('../models/user')
+const express = require('express')
+const router = express.Router()
+const User = require('../models/user')
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send(User.list) // change url to /users
-  return
+router.get('/', async function (req, res, next) {
+  const users = await User.find()
+  if (req.query.view === 'json') return res.send(users) // change url to /users
 
   res.render('users', {
-    user: {
-      name: 'Hello dude',
-    },
-    users: [{ name: 'Justin' }, { name: 'Sarah' }, { name: 'Maria' }, { name: 'dumbo' }],
+    users: users,
   })
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   //const user = new User(req.body.name) // gets it from axios post
   // new method created in user.js static
-  const user = User.create({ name: req.body.name, email: req.body.email })
-  res.send({ user })
+  const user = await User.create({ name: req.body.name, email: req.body.email })
+  res.send(user)
 })
 
 /* router.post('/', function (req, res, next) {
