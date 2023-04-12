@@ -87,6 +87,14 @@ If you what to visualize a preview of the **class.puml** file or another **_\*.p
 
   docker rmi -f $(docker images -aq)
 
+  docker compose
+  run a local copy of the database in development
+  27017:27017 -> port 27017 on the host is mapped to port 27017 on the container
+  -d runs in the background
+
+  docker compose up
+  docker-compose up --build
+
   \_Now that we are ready, let's have some coding fun!\*
 
 ---
