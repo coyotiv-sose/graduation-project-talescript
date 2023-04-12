@@ -1,34 +1,42 @@
 // Sourdough app.
 // A fast track learning experience done in community to learn and share knowledge.
 
-const User = require('./models/user');
-const Event = require('./models/event');
+const User = require('./models/user')
+const Event = require('./models/event')
 const Recipe = require('./models/recipe')
-const Note = require('./models/note');
+const Note = require('./models/note')
 
-const axios = require('axios');
+const axios = require('axios')
 
 // avoids adding the url to axios methods
 axios.defaults.baseURL = 'http://localhost:3000'
 
-async function main () {
-const users = await axios.get('http://localhost:3000/users')
-console.log(users.data);
+async function main() {
+  const newUser = await axios.post('/users', { name: 'alex', email: 'some@ermail.com' })
+  //console.log(newUser.data)
 
-const newUser = await axios.post('/users', {name: 'alex', email: 'some@ermail.com'})
-console.log(newUser.data);
+  const anotherOne = await axios.post('/users', { name: 'alex555', email: 'some@ermail.com' })
 
+  const createRecipe = await axios.post('/recipes', {
+    title: 'this savory title',
+    ingredients: ['flour', 'bread something', 'notes'],
+    user: newUser.data._id,
+  })
+  console.log(createRecipe.data)
+
+  const users = await axios.get('http://localhost:3000/users?view=json')
+  // console.log(users.data)
 }
-/* main().catch(error => {
-  console.log(error.message ? error.message : error)})
 
-  return; */
+main().catch(error => {
+  console.log(error.message ? error.message : error)
+})
 
-
+return
 
 // // User
 // // console.log('user list start', User.list)
-const alexander = new User('Alexander', 'user@email.com')
+// const alexander = new User('Alexander', 'user@email.com')
 // alexander.save()
 
 // const alexander2 = User.create('Alexander2', 'user2@email.com')
@@ -38,14 +46,13 @@ const alexander = new User('Alexander', 'user@email.com')
 
 // // Recipes
 // // returns whenever we want store it in a variable.....
-const firstRecipe = alexander.createRecipe('this savory title', '04-04-2024', 'flour', 'bread something', 'notes')
+// const firstRecipe = alexander.createRecipe('this savory title', '04-04-2024', 'flour', 'bread something', 'notes')
 
 // alexander.createRecipe('beer wheat honey', '04-04-2024', 'honey', 'salt', 'beer', 'yeast')
 // alexander2.createRecipe('beer wheat honey salt', '04-04-2024', 'honey', 'salt', 'beer', 'yeast')
-alexander.addNote('somethings savory', firstRecipe)
-console.log(alexander)
-console.log(alexander.recipes[0])
-
+// alexander.addNote('somethings savory', firstRecipe)
+// console.log(alexander.notes)
+// console.log(alexander.recipes[0])
 
 // // const recipesWithBeerInTitle = User.list.map(u => u.recipes).flat().filter(r => r.title.includes('beer'))
 // const recipesWithBeerInTitle = Recipe.list.filter(r => r.title.includes('beer'))
@@ -63,7 +70,9 @@ console.log(alexander.recipes[0])
 // const numan = new User('numan', 'email@email.com')
 // const numanEvent = numan.createEvent('another patio sale', '04-04-2024')
 // alexander.joinEvent(numanEvent)
-// console.log(alexander.events[1].attendees)
+// console.log('updated version: ', alexander)
+// console.log(numan)
+
 // alexander.leaveEvent(numanEvent)
 // console.log('updated version: ', alexander)
 // // const alexanderLeaveEvent = alexander.evenLocation; // returning function
