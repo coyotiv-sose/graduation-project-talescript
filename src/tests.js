@@ -9,7 +9,7 @@ const Note = require('./models/note')
 const axios = require('axios')
 
 // avoids adding the url to axios methods
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://api:3000'
 
 async function main() {
   const newUser = await axios.post('/users', { name: 'alex', email: 'some@ermail.com' })
@@ -22,17 +22,18 @@ async function main() {
     ingredients: ['flour', 'bread something', 'notes'],
     user: newUser.data._id,
   })
-  console.log(createRecipe.data)
+  //console.log(createRecipe.data)
 
-  const users = await axios.get('http://localhost:3000/users?view=json')
-  // console.log(users.data)
+  const users = await axios.get('/users?view=json')
+  //console.log(users.data)
+  console.log(users.data[0].recipes[0])
 }
 
 main().catch(error => {
   console.log(error.message ? error.message : error)
 })
 
-return
+//return
 
 // // User
 // // console.log('user list start', User.list)
