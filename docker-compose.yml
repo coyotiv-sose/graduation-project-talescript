@@ -25,3 +25,12 @@ services:
       - '27017:27017'
     volumes: #stores the data on the hard disk
       - ./data:/data/db
+
+  tests:
+    image: sourdough-api
+    depends_on:
+      - api
+    volumes:
+      - ./src/tests.js:/app/src/tests.js
+    working_dir: /app
+    command: node src/tests.js
