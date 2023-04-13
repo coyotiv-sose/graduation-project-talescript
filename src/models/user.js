@@ -10,13 +10,14 @@ const mongoose = require('mongoose')
 const Recipe = require('./recipe')
 const Notes = require('./note')
 const Event = require('./event')
+const autopopulate = require('mongoose-autopopulate')
 
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
-  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
-  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }],
-  events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }],
+  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe', autopopulate: true }],
+  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note', autopopulate: true }],
+  events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event', autopopulate: true }],
 })
 
 class User {
@@ -79,4 +80,5 @@ class User {
   // static list = []
 }
 userSchema.loadClass(User)
+userSchema.plugin(autopopulate)
 module.exports = mongoose.model('User', userSchema)
