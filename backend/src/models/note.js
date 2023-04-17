@@ -1,14 +1,7 @@
-
 class Note {
-    constructor(recipeNotes) {
-      this.recipeNotes = recipeNotes
-    }
-  
-    // edit note
-  
-    // delete note
-  
-    // share notes
+  constructor(recipeNotes) {
+    this.recipeNotes = recipeNotes
   }
+}
 
-  module.exports = Note;
+module.exports = Note
