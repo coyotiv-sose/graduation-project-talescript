@@ -26,15 +26,7 @@ class Recipe {
       recipe title: ${this.title}
       recipe date: ${this.date}
       recipe ingredients: ${this.ingredients.join(' ')}`
-
-    // const map1 = array1.map(x => x * 2);
   }
-
-  // edit recipe
-
-  // delete recipe
-
-  // share recipe`
 }
 
 recipeSchema.loadClass(Recipe)
