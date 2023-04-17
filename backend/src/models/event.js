@@ -1,7 +1,6 @@
 class Event {
   attendees = []
 
-  // maybe add name
   constructor(location, date) {
     this.location = location
     this.date = date
