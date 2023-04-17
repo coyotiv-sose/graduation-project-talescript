@@ -1,10 +1,8 @@
-version: '3' # specific to swarm
-
 services:
   api:
     image: sourdough-api
     build:
-      context: .
+      context: backend
       dockerfile: Dockerfile
     depends_on:
       - mongodb
@@ -13,11 +11,22 @@ services:
     ports:
       - '3000:3000'
     volumes: #remove when in production
-      - ./src:/app/src
-    #env_file:
-    #  - .env
+      - ./backend/src:/app/src
+    env_file:
+      - backend/.env
     environment: # where is this defined?
       - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/sourdough
+
+  frontend:
+    image: sourdough-frontend2
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
 
   mongodb:
     image: mongo
@@ -26,11 +35,11 @@ services:
     volumes: #stores the data on the hard disk
       - ./data:/data/db
 
-  tests:
-    image: sourdough-api
-    depends_on:
-      - api
-    volumes:
-      - ./src/tests.js:/app/src/tests.js
-    working_dir: /app
-    command: node src/tests.js
+  # tests:
+  #   image: sourdough-api
+  #   depends_on:
+  #     - api
+  #   volumes:
+  #     - ./backend/src/tdd/:/app/src/tests.js
+  #   working_dir: /app
+  #   command: node src/tests.js

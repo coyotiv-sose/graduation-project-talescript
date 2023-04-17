@@ -34,5 +34,13 @@
     "mongoose-autopopulate": "^1.0.0",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "setupFilesAfterEnv": [
+      "./test/setup.js"
+    ]
   }
 }
