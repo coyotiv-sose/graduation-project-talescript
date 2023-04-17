@@ -51,15 +51,10 @@ class User {
   }
 
   leaveEvent(event) {
-    // Is this correct?
-    //const found = array1.find(element => element > 10);
-
-    // User.events = ['places 1', 'place 2'];
 
     const eventIndex = this.events.indexOf(event)
     this.events.splice(eventIndex, 1)
 
-    // Events.{ attendees = ['user 1', 'user 2']}
 
     const removeAttendeeIndex = event.attendees.indexOf(this)
     event.attendees.splice(removeAttendeeIndex, 1)
