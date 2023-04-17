@@ -1,10 +1,3 @@
-// - events
-// -- can join event
-// -- can leave event/
-// -- can create event/
-// -- location
-// -- date and time of event
-
 class Event {
   attendees = []
 
@@ -16,26 +9,9 @@ class Event {
     this.description = description
   }
 
-  // joinEvent(user) {
-  //   this.attendees.push(user)
-  // }
-
-  // leaveEvent(user) {
-  //   const index = this.attendees.indexOf(user)
-  //   this.attendees.splice(index, 1)
-  // }
-
-  // // cancel event
-  // cancelEvent() {
-  //   this.attendees = []
-  // }
-
   get upcomingEvents() {
     return this.attendees.filter(event => event.date > Date.now())
   }
-
-
-  // getters and setters
 }
 
 module.exports = Event
