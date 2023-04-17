@@ -6,11 +6,26 @@ class User {
   events: [Event]
   notes: [Note]
 
-  constructor(name: string, email: string)
+  constructor(name: string, email: string, recipes: Array, notes: Array, events: Array)
 
-  createRecipe(title: string, date: date, ...ingredients: [string])
-  addNote(recipe: Recipe)
+  createRecipe(title: string, ...ingredients: [string])
+  editRecipe(recipe: Recipe, title: string, ...ingredients: [string])
+  deleteRecipe(recipe: Recipe)
+  copyRecipe(recipe: Recipe)
 
+  createEvent(location: string, date: Date)
+  joinEvent(event: Event)
+  leaveEvent(event: Event)
+  cancelEvent(event: Event)
+
+  addNote(recipeNotes: string, recipe: Recipe)
+  editNote(recipeNotes: string, recipe: Recipe)
+  deleteNote(note: Note)
+
+  createCourse(title: string, description: string, price: number, startDate: Date, endDate: Date)
+  editCourse(course: Course, title: string, description: string, price: number, startDate: Date, endDate: Date)
+  joinCourse(course: Course)
+  deleteCourse(course: Course)
 
 }
 @enduml
