@@ -1,15 +1,9 @@
-// sourdough app
-// - users
-// -- name/
-// -- email/
-// -- notes/
-// -- recipes/
-// -- events/
 const mongoose = require('mongoose')
 
 const Recipe = require('./recipe')
 const Notes = require('./note')
 const Event = require('./event')
+const Course = require('./course')
 const autopopulate = require('mongoose-autopopulate')
 
 const userSchema = new mongoose.Schema({
@@ -18,6 +12,7 @@ const userSchema = new mongoose.Schema({
   recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe', autopopulate: true }],
   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note', autopopulate: true }],
   events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event', autopopulate: true }],
+  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course', autopopulate: true }],
 })
 
 class User {
@@ -28,12 +23,22 @@ class User {
     return newRecipe
   }
 
-  // do these methos belong to User or in their own classes?
-  addNote(recipeNotes, recipe) {
-    const note = new Notes(recipeNotes)
-    this.notes.push(note)
-    recipe.notes.push(note)
-    return note
+  editRecipe(recipe, title, ...ingredients) {
+    recipe.title = title
+    recipe.ingredients = [...ingredients]
+    return recipe
+  }
+
+  deleteRecipe(recipe) {
+    const recipeIndex = this.recipes.indexOf(recipe)
+    this.recipes.splice(recipeIndex, 1)
+    return recipe
+  }
+
+  copyRecipe(recipe) {
+    const newRecipe = new Recipe(recipe.title, recipe.ingredients)
+    this.recipes.push(newRecipe)
+    return newRecipe
   }
 
   // anything that motifies the state goes into the user class
@@ -51,10 +56,8 @@ class User {
   }
 
   leaveEvent(event) {
-
     const eventIndex = this.events.indexOf(event)
     this.events.splice(eventIndex, 1)
-
 
     const removeAttendeeIndex = event.attendees.indexOf(this)
     event.attendees.splice(removeAttendeeIndex, 1)
@@ -62,17 +65,54 @@ class User {
     return event
   }
 
-  // static create(name, email) {
-  //   const newUser = new User(name, email)
-  //   User.list.push(newUser)
-  //   return newUser
-  // }
+  cancelEvent(event) {
+    event.attendees = []
+    return event
+  }
 
-  // save() {
-  //   User.list.push(this)
-  // }
+  addNote(recipeNotes, recipe) {
+    const note = new Notes(recipeNotes)
+    this.notes.push(note)
+    recipe.notes.push(note)
+    return note
+  }
 
-  // static list = []
+  editNote(recipeNotes, note) {
+    note.recipeNotes = recipeNotes
+    return note
+  }
+
+  deleteNote(note) {
+    const noteIndex = this.notes.indexOf(note)
+    this.notes.splice(noteIndex, 1)
+    return note
+  }
+
+  createCourse(title, description, price, startDate, endDate) {
+    const course = new Course(title, description, price, startDate, endDate)
+    this.courses.push(course)
+    return course
+  }
+
+  editCourse(course, title, description, price, startDate, endDate) {
+    course.title = title
+    course.description = description
+    course.price = price
+    course.startDate = startDate
+    course.endDate = endDate
+    return course
+  }
+
+  joinCourse(course) {
+    this.courses.push(course)
+    course.students.push(this)
+  }
+
+  deleteCourse(course) {
+    const courseIndex = this.courses.indexOf(course)
+    this.courses.splice(courseIndex, 1)
+    return course
+  }
 }
 userSchema.loadClass(User)
 userSchema.plugin(autopopulate)
