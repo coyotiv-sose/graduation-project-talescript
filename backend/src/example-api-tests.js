@@ -18,7 +18,7 @@ async function main() {
   const anotherOne = await axios.post('/users', { name: 'alex555', email: 'some@ermail.com' })
 
   const createRecipe = await axios.post('/recipes', {
-    title: 'this savory title',
+    name: 'this savory title',
     ingredients: [
       { quantity: 400, name: 'flour' },
       { quantity: 1, name: 'bread something' },
