@@ -16,16 +16,16 @@ const userSchema = new mongoose.Schema({
 })
 
 class User {
-  async createRecipe(title, ...ingredients) {
-    const newRecipe = await Recipe.create({ title: title, ingredients: [...ingredients] })
+  async createRecipe(title, ingredients) {
+    const newRecipe = await Recipe.create({ title: title, ingredients: ingredients })
     this.recipes.push(newRecipe)
     await this.save()
     return newRecipe
   }
 
-  editRecipe(recipe, title, ...ingredients) {
+  editRecipe(recipe, title, ingredients) {
     recipe.title = title
-    recipe.ingredients = [...ingredients]
+    recipe.ingredients = ingredients
     return recipe
   }
 
@@ -70,10 +70,12 @@ class User {
     return event
   }
 
-  addNote(recipeNotes, recipe) {
-    const note = new Notes(recipeNotes)
+  async addNote(recipeNotes, recipe) {
+    const note = await Notes.create({ recipeNotes: recipeNotes })
     this.notes.push(note)
     recipe.notes.push(note)
+    await this.save()
+    await recipe.save()
     return note
   }
 
