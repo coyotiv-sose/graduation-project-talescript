@@ -18,7 +18,7 @@ services:
       - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/sourdough
 
   frontend:
-    image: sourdough-frontend2
+    image: sourdough-frontend
     build:
       context: frontend
       dockerfile: Dockerfile
@@ -35,11 +35,11 @@ services:
     volumes: #stores the data on the hard disk
       - ./data:/data/db
 
-  # tests:
-  #   image: sourdough-api
-  #   depends_on:
-  #     - api
-  #   volumes:
-  #     - ./backend/src/tdd/:/app/src/tests.js
-  #   working_dir: /app
-  #   command: node src/tests.js
+  tests:
+    image: sourdough-api
+    depends_on:
+      - api
+    volumes:
+      - ./backend/src/example-api-tests.js/:/app/backend/src/example-api-tests.js
+    working_dir: /app
+    command: node ./backend/src/example-api-tests.js

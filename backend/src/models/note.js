@@ -1,7 +1,12 @@
-class Note {
-  constructor(recipeNotes) {
-    this.recipeNotes = recipeNotes
-  }
-}
+const mongoose = require('mongoose')
 
-module.exports = Note
+const noteSchema = new mongoose.Schema(
+  {
+    recipeNotes: String,
+  },
+  { timestamps: true }
+)
+
+//class Note {}
+
+module.exports = mongoose.model('Note', noteSchema)

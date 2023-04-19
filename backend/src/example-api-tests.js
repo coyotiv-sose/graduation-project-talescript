@@ -1,10 +1,10 @@
 // Sourdough app.
 // A fast track learning experience done in community to learn and share knowledge.
 
-const User = require('./models/user')
-const Event = require('./models/event')
-const Recipe = require('./models/recipe')
-const Note = require('./models/note')
+// const User = require('./models/user')
+// const Event = require('./models/event')
+// const Recipe = require('./models/recipe')
+// const Note = require('./models/note')
 
 const axios = require('axios')
 
@@ -19,7 +19,10 @@ async function main() {
 
   const createRecipe = await axios.post('/recipes', {
     title: 'this savory title',
-    ingredients: ['flour', 'bread something', 'notes'],
+    ingredients: [
+      { quantity: 400, name: 'flour' },
+      { quantity: 1, name: 'bread something' },
+    ],
     user: newUser.data._id,
   })
   //console.log(createRecipe.data)

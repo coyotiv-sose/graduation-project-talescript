@@ -1,11 +1,16 @@
-class Course {
-  courses = []
+const mongoose = require('mongoose')
 
-  constructor(title, description, price, startDate, endDate) {
-    this.title = title
-    this.description = description
-    this.price = price
-    this.startDate = startDate
-    this.endDate = endDate
-  }
-}
+const courseSchema = new mongoose.Schema(
+  {
+    title: String,
+    description: String,
+    price: Number,
+    startDate: Date,
+    endDate: Date,
+  },
+  { timestamps: true }
+)
+
+class Course {}
+
+module.exports = mongoose.model('Course', courseSchema)

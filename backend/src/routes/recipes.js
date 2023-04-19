@@ -3,7 +3,6 @@ const router = express.Router()
 const Recipe = require('../models/recipe')
 const User = require('../models/user')
 
-
 /*
 Routes
 
@@ -21,17 +20,51 @@ test - everything.
 
 */
 
+// From the recipes we can get the notes
+
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send(Recipe.list)
+router.get('/', async function (req, res, next) {
+  res.send(await Recipe.find())
 })
 
+// get a single recipe
+router.get('/:recipeId', async (req, res, next) => {
+  const recipe = await Recipe.findById(req.params.recipeId)
+  res.send(recipe)
+})
+
+// createRecipe
 router.post('/', async (req, res, next) => {
   const user = await User.findById(req.body.user)
   const newRecipe = await user.createRecipe(req.body.title, req.body.ingredients)
   res.send(newRecipe)
 })
 
+// edit a recipe
+router.put('/:recipeId', async (req, res, next) => {
+  const recipe = await Recipe.findById(req.params.recipeId)
+  recipe.title = req.body.title
+  recipe.ingredients = req.body.ingredients
+  await recipe.save()
+  res.send(recipe)
+})
+
+// delete a recipe
+router.delete('/:recipeId', async (req, res, next) => {
+  const recipe = await Recipe.findById(req.params.recipeId)
+  await recipe.remove()
+  res.send(recipe)
+})
+
+// copy a recipe
+router.post('/:recipeId/copy', async (req, res, next) => {
+  const recipe = await Recipe.findById(req.params.recipeId)
+  const user = await User.findById(req.body.user)
+  const newRecipe = await user.createRecipe(recipe.title, recipe.ingredients)
+  res.send(newRecipe)
+})
+
+// create a note
 router.post('/:recipeId/notes', async (req, res, next) => {
   const recipe = await Recipe.findById(req.params.recipeId)
   const user = await User.findById(req.body.user)
@@ -39,8 +72,21 @@ router.post('/:recipeId/notes', async (req, res, next) => {
   const note = await user.addNote(req.body.note, recipe)
 
   res.send(note)
-
 })
 
+// edit note for a recipe
+router.put('/:recipeId/notes/:noteId', async (req, res, next) => {
+  const note = await Note.findById(req.params.noteId)
+  note.recipeNotes = req.body.note
+  await note.save()
+  res.send(note)
+})
+
+// delete note for a recipe
+router.delete('/:recipeId/notes/:noteId', async (req, res, next) => {
+  const note = await Note.findById(req.params.noteId)
+  await note.remove()
+  res.send(note)
+})
 
 module.exports = router
