@@ -12,6 +12,11 @@ router.get('/', async function (req, res, next) {
   })
 })
 
+router.get('/:userId', async function (req, res, next) {
+  const user = await User.findById(req.params.userId)
+  res.send(user)
+})
+
 router.post('/', async (req, res, next) => {
   //const user = new User(req.body.name) // gets it from axios post
   // new method created in user.js static
