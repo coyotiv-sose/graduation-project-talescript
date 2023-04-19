@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Recipe = require('../models/recipe')
 const User = require('../models/user')
+const Note = require('../models/note')
 
 /*
 Routes
@@ -36,7 +37,7 @@ router.get('/:recipeId', async (req, res, next) => {
 // createRecipe
 router.post('/', async (req, res, next) => {
   const user = await User.findById(req.body.user)
-  const newRecipe = await user.createRecipe(req.body.title, req.body.ingredients)
+  const newRecipe = await user.createRecipe(req.body.name, req.body.ingredients)
   res.send(newRecipe)
 })
 
