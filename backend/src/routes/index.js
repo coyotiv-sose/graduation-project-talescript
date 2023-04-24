@@ -7,11 +7,6 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'SourdoughAPP' })
 })
 
-// return 404 if no route is found
-router.use(function (req, res, next) {
-  res.status(404).send('Sorry cant find that!')
-})
-
 // login
 router.post('/login', function (req, res, next) {
   // check if user exists
