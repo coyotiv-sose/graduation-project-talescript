@@ -48,11 +48,13 @@ router.post('/:eventId/join', async (req, res, next) => {
 })
 
 // leave an event
-router.post('/:eventId/leave', async (req, res, next) => {
+
+router.delete('/:eventId/attendees', async (req, res, next) => {
   const event = await Event.findById(req.params.eventId)
   const user = await User.findById(req.body.user)
-  await event.leave(user)
-  res.send(event)
+  await user.leaveEvent(event)
+  const updatedEvent = await Event.findById(req.params.eventId)
+  res.send(updatedEvent)
 })
 
 module.exports = router
