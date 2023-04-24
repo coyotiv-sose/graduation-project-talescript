@@ -39,4 +39,20 @@ router.delete('/:courseId', async (req, res, next) => {
   res.send(course)
 })
 
+// join a course
+router.post('/:courseId/join', async (req, res, next) => {
+  const course = await Course.findById(req.params.courseId)
+  const user = await User.findById(req.body.user)
+  await course.join(user)
+  res.send(course)
+})
+
+// leave a course
+router.post('/:courseId/leave', async (req, res, next) => {
+  const course = await Course.findById(req.params.courseId)
+  const user = await User.findById(req.body.user)
+  await course.leave(user)
+  res.send(course)
+})
+
 module.exports = router
