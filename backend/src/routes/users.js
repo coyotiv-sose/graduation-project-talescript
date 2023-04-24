@@ -5,11 +5,7 @@ const User = require('../models/user')
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
   const users = await User.find()
-  if (req.query.view === 'json') return res.send(users) // change url to /users
-
-  res.render('users', {
-    users: users,
-  })
+  return res.send(users) // change url to /users
 })
 
 router.get('/:userId', async function (req, res, next) {
@@ -41,6 +37,8 @@ router.delete('/:userId', async (req, res, next) => {
   await user.remove()
   res.send(user)
 })
+
+// delete other properties of user / composition between classes
 
 /* router.post('/', function (req, res, next) {
   const newUser = User.create(req.body.name, req.body.email);
