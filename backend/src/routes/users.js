@@ -24,6 +24,20 @@ router.post('/', async (req, res, next) => {
   res.send(user)
 })
 
+router.put('/:userId', async (req, res, next) => {
+  const user = await User.findById(req.params.userId)
+  user.name = req.body.name
+  user.email = req.body.email
+  await user.save()
+  res.send(user)
+})
+
+router.delete('/:userId', async (req, res, next) => {
+  const user = await User.findById(req.params.userId)
+  await user.remove()
+  res.send(user)
+})
+
 /* router.post('/', function (req, res, next) {
   const newUser = User.create(req.body.name, req.body.email);
   res.send(newUser)
