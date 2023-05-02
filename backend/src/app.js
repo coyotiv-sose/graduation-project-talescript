@@ -22,6 +22,7 @@ var usersRouter = require('./routes/users')
 const recipeRouter = require('./routes/recipes')
 
 var app = express()
+app.set('trust proxy', 1) // trust first proxy
 app.use(cors())
 
 // view engine setup
@@ -53,5 +54,24 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+app.createSocketServer = function (server) {
+  const io = require('socket.io')(server, {
+    cors: {
+      origin: true,
+      credentials: true,
+    },
+  })
+
+  console.log('socket.io server created')
+
+  io.on('connection', function (socket) {
+    console.log('a user connected')
+
+    socket.on('disconnect', function () {
+      console.log('user disconnected')
+    })
+  })
+}
 
 module.exports = app
