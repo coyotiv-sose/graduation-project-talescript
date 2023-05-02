@@ -5,12 +5,16 @@ export default {
   name: 'RecipesView',
   data() {
     return {
-      recipes: []
+      recipes: [],
+      count: 0
     }
   },
   async created() {
     const response = await axios.get('http://localhost:3000/recipes')
     this.recipes = response.data
+  },
+  mounted() {
+    console.log(this.count)
   }
 }
 </script>
@@ -18,11 +22,13 @@ export default {
 <template>
   <main>
     <h1>Recipes</h1>
-
+    <p>Count: {{ count }}</p>
+    <button @click="count++">Increment</button>
     <ul>
-      <!-- get recipe notes-->
-
-      <li v-for="recipe in recipes" :key="recipe.id">{{ recipe.title }}</li>
+      <!--get recipe route for a single recipe-->
+      <a :href="`/recipes/recipe.id`">
+        <li v-for="recipe in recipes" :key="recipe.id">{{ recipe.title }}</li>
+      </a>
     </ul>
   </main>
 </template>
