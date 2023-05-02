@@ -1,14 +1,37 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+//import { useAccountStore } from './stores/account'
+import { useSocketStore } from './stores/socket'
+
+import { mapActions, mapState } from 'pinia'
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+    RouterLink,
+    RouterView
+  },
+  async mounted() {
+    //await this.fetchUser()
+    this.init()
+  },
+  methods: {
+    //...mapActions(useAccountStore, ['fetchUser', 'logout']),
+    ...mapActions(useSocketStore, ['init'])
+  },
+  computed: {
+    //...mapState(useAccountStore, ['user']),
+    ...mapState(useSocketStore, ['connected'])
+  }
+}
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Sourdough in a box" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -17,8 +40,11 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header>
-
-  <RouterView />
+  <!--<h1>sourdough {{ user?.name }} socket? {{ connected ? 'yes' : 'no' }}</h1>
+-->
+  <Suspense>
+    <RouterView />
+  </Suspense>
 </template>
 
 <style scoped>
