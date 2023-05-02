@@ -5,27 +5,24 @@ export default {
   name: 'RecipesView',
   data() {
     return {
-      recipes: [],
-      name: 'alexander'
+      recipes: []
     }
   },
   async created() {
     const response = await axios.get('http://localhost:3000/recipes')
     this.recipes = response.data
-  },
-  methods: {
-    async changeName(name) {
-      this.name = 'alex'
-    }
   }
 }
 </script>
 
-<template lang="pug">
-main
-  h1 Recipes
-  p {{ name }}
-  button(@onClick="changeName") Change name
-  ul
-    li(v-for="recipe in recipes") {{ recipe.title }}
+<template>
+  <main>
+    <h1>Recipes</h1>
+
+    <ul>
+      <!-- get recipe notes-->
+
+      <li v-for="recipe in recipes" :key="recipe.id">{{ recipe.title }}</li>
+    </ul>
+  </main>
 </template>
