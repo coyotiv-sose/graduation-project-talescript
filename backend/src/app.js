@@ -10,24 +10,36 @@ require('./database-connection')
 //console.log(process.env.MONGODB_CONNECTION_STRING)
 /* End MongoDB Connection String */
 
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
+const createError = require('http-errors')
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 const cors = require('cors')
+const session = require('express-session')
 
-var indexRouter = require('./routes/index')
-var usersRouter = require('./routes/users')
+require('./database-connection')
+
+const usersRouter = require('./routes/users')
 const recipeRouter = require('./routes/recipes')
+const indexRouter = require('./routes/index')
 
-var app = express()
+const app = express()
 app.set('trust proxy', 1) // trust first proxy
 app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === 'production' ? true : false, maxAge: 1000 * 60 * 60 * 24 * 15 },
+  })
+)
 
 app.use(logger('dev'))
 app.use(express.json())
