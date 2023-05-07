@@ -37,6 +37,7 @@ async function main() {
   // })
 
   console.log('all users: ', allUsers.data)
+  console.log(process.env.MONGODB_CONNECTION_STRING)
 }
 
 main()
