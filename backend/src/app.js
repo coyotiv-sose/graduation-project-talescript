@@ -6,7 +6,7 @@
 
 // MongoDB Connection String
 require('dotenv').config()
-require('./database-connection')
+//require('./database-connection')
 //console.log(process.env.MONGODB_CONNECTION_STRING)
 /* End MongoDB Connection String */
 
@@ -17,7 +17,9 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
 
+const mongoose = require('mongoose')
 require('./database-connection')
 
 const usersRouter = require('./routes/users')
@@ -26,20 +28,56 @@ const indexRouter = require('./routes/index')
 
 const app = express()
 app.set('trust proxy', 1) // trust first proxy
-app.use(cors())
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+const clientPromise = mongoose.connection.asPromise().then(connection => (connection = connection.getClient()))
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === 'production' ? true : false, maxAge: 1000 * 60 * 60 * 24 * 15 },
+    // NODEnv returns undefined
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 1000 * 60 * 60 * 24 * 15,
+    },
+    //store: MongoStore.create({ mongoUrl: process.env.MONGODB_CONNECTION_STRING }),
+    //ttl: 60 * 60 * 24 * 15, // 60sec * 60min * 24h * 15days
+    store: MongoStore.create({ clientPromise, stringify: false }),
   })
 )
+
+// app.use(function (req, res, next) {
+//   console.log(process.env.NODE_ENV) // undefined
+//   next()
+// })
+
+// app.use(function (req, res, next) {
+//   res.locals.session = req.session
+//   req.session.history = req.session.history || []
+//   req.session.history.push({ url: req.url, ip: req.ip })
+//   req.session.ip = req.ip
+//   console.log('session', req.session)
+//   next()
+// })
+
+app.use(function (req, res, next) {
+  const numberOfVisits = req.session.numberOfVisits || 0
+  req.session.numberOfVisits = numberOfVisits + 1
+  req.session.history = req.session.history || []
+  req.session.history.push({ url: req.url, ip: req.ip })
+  console.log('session', req.session)
+  next()
+})
 
 app.use(logger('dev'))
 app.use(express.json())
