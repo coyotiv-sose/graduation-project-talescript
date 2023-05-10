@@ -1,7 +1,7 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-//import { useAccountStore } from './stores/account'
+import { useAccountStore } from './stores/account'
 import { useSocketStore } from './stores/socket'
 
 import { mapActions, mapState } from 'pinia'
@@ -14,11 +14,11 @@ export default {
     RouterView
   },
   async mounted() {
-    //await this.fetchUser()
+    await this.fetchUser()
     this.init()
   },
   methods: {
-    //...mapActions(useAccountStore, ['fetchUser', 'logout']),
+    ...mapActions(useAccountStore, ['fetchUser', 'logout']),
     ...mapActions(useSocketStore, ['init'])
   },
   computed: {
