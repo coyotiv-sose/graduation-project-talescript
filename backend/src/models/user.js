@@ -5,6 +5,7 @@ const Notes = require('./note')
 const Event = require('./event')
 const Course = require('./course')
 const autopopulate = require('mongoose-autopopulate')
+const recipe = require('./recipe')
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -84,10 +85,14 @@ class User {
     return note
   }
 
-  deleteNote(note) {
+  async deleteNote(note) {
     const noteIndex = this.notes.indexOf(note)
     this.notes.splice(noteIndex, 1)
-    return note
+    await this.save()
+    const recipe = await Recipe.findOne({ notes: note })
+    recipe.notes.splice(recipe.notes.indexOf(note), 1)
+    await recipe.save()
+    return recipe.notes
   }
 
   createCourse(title, description, price, startDate, endDate) {
