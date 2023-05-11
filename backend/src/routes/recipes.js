@@ -86,8 +86,9 @@ router.put('/:recipeId/notes/:noteId', async (req, res, next) => {
 // delete note for a recipe
 router.delete('/:recipeId/notes/:noteId', async (req, res, next) => {
   const note = await Note.findById(req.params.noteId)
-  await note.remove()
-  res.send(note)
+  await req.user.deleteNote(note)
+  await Note.findByIdAndDelete(req.params.noteId)
+  res.send(200)
 })
 
 module.exports = router
