@@ -26,6 +26,7 @@ const usersRouter = require('./routes/users')
 const recipeRouter = require('./routes/recipes')
 const indexRouter = require('./routes/index')
 const accountsRouter = require('./routes/accounts')
+const eventsRouter = require('./routes/events')
 
 const app = express()
 app.set('trust proxy', 1) // trust first proxy
@@ -90,6 +91,7 @@ app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/recipes', recipeRouter)
 app.use('/accounts', accountsRouter)
+app.use('/events', eventsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
