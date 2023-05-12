@@ -58,6 +58,13 @@ app.use(
   })
 )
 
+// THIS BLOCK BREAKS RECIPE VIEW - not anymore after rebuilding
+app.use(function (req, res, next) {
+  console.log('is the session here?', req.session)
+  console.log('cookies?', req.headers)
+  next()
+})
+
 // app.use(function (req, res, next) {
 //   console.log(process.env.NODE_ENV) // undefined
 //   next()
