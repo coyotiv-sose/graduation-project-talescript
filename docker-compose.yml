@@ -41,5 +41,10 @@ services:
       - api
     volumes:
       - ./backend/src/example-api-tests.js/:/app/backend/src/example-api-tests.js
+      - ./backend/src:/app/backend/src
     working_dir: /app
     command: node ./backend/src/example-api-tests.js
+    env_file:
+      - backend/.env
+    environment: # where is this defined?
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/sourdough
