@@ -1,15 +1,18 @@
 const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
+const passportLocalMongoose = require('passport-local-mongoose')
 
 const Recipe = require('./recipe')
 const Notes = require('./note')
 const Event = require('./event')
 const Course = require('./course')
-const autopopulate = require('mongoose-autopopulate')
 const recipe = require('./recipe')
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
+  name: {
+    type: String,
+    required: true,
+  },
   recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe', autopopulate: true }],
   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note', autopopulate: true }],
   events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event', autopopulate: true }],
@@ -123,4 +126,5 @@ class User {
 }
 userSchema.loadClass(User)
 userSchema.plugin(autopopulate)
+userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 module.exports = mongoose.model('User', userSchema)

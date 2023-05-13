@@ -12,8 +12,8 @@ const axios = require('axios')
 axios.defaults.baseURL = 'http://api:3000'
 
 async function main() {
-  const newUser = await axios.post('/users', { name: 'alex', email: 'alex@email.com' })
-  const secondUser = await axios.post('/users', { name: 'alex555', email: 'alex555@email.com' })
+  const newUser = await axios.post('/users', { name: 'alex', email: 'alex333@email.com' })
+  // const secondUser = await axios.post('/users', { name: 'alex555', email: 'alex555@email.com' })
 
   const createRecipe = await axios.post('/recipes', {
     name: 'this savory title',
@@ -41,22 +41,22 @@ async function main() {
    * Note Routes
    */
   // create a note
-  const createNote = await axios.post(`recipes/${createRecipe.data._id}/notes`, {
-    note: 'this is a note',
-    user: '645cd9bfd2c40a2b0fa59217',
-    //user: secondUser.data._id,
-  })
-  console.log(`createNote.data`, createNote.data)
+  // const createNote = await axios.post(`recipes/${createRecipe.data._id}/notes`, {
+  //   note: 'this is a note',
+  //   user: '645cd9bfd2c40a2b0fa59217',
+  //   //user: secondUser.data._id,
+  // })
+  // console.log(`createNote.data`, createNote.data)
 
-  // edit a note
-  const editNote = await axios.put(`recipes/${createRecipe.data._id}/notes/${createNote.data._id}`, {
-    note: 'this is an edited note',
+  // // edit a note
+  // const editNote = await axios.put(`recipes/${createRecipe.data._id}/notes/${createNote.data._id}`, {
+  //   note: 'this is an edited note',
 
-    user: secondUser.data._id,
-  })
-  console.log(`editNote.data`, editNote.data)
+  //   user: secondUser.data._id,
+  // })
+  // console.log(`editNote.data`, editNote.data)
 
-  // delete a note
+  // // delete a note
   // const deleteNote = await axios.delete(`recipes/${createRecipe.data._id}/notes/${createNote.data._id}`, {
   //   note: 'this is a note',
   //   recipe: createRecipe.data._id,
@@ -203,6 +203,19 @@ async function main() {
   /***
    * END of Courses Routes
    */
+
+  /** Create a new user passpor */
+  const newUserPassport = await axios.post('/accounts', {
+    name: 'alex',
+    email: 'alex@passport.com',
+    password: '123456',
+  })
+  console.log(`newUserPassport.data`, newUserPassport.data)
+
+  const loggedInNewUserPassport = await axios.post('/accounts/session', {
+    email: 'alex@passport.com',
+    password: '123456',
+  })
 } // end of main
 
 main().catch(error => {

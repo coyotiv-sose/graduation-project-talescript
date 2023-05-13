@@ -28,6 +28,17 @@ const indexRouter = require('./routes/index')
 const accountsRouter = require('./routes/accounts')
 const eventsRouter = require('./routes/events')
 
+// requires the model with Passport-Local Mongoose plugged in
+const User = require('./models/user')
+const passport = require('passport')
+
+// use static authenticate method of model in LocalStrategy
+passport.use(User.createStrategy())
+
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 const app = express()
 app.set('trust proxy', 1) // trust first proxy
 app.use(
@@ -42,6 +53,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 const clientPromise = mongoose.connection.asPromise().then(connection => (connection = connection.getClient()))
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -57,6 +69,8 @@ app.use(
     store: MongoStore.create({ clientPromise, stringify: false }),
   })
 )
+
+app.use(passport.session())
 
 // THIS BLOCK BREAKS RECIPE VIEW - not anymore after rebuilding
 app.use(function (req, res, next) {
