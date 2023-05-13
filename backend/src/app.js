@@ -74,8 +74,8 @@ app.use(passport.session())
 
 // THIS BLOCK BREAKS RECIPE VIEW - not anymore after rebuilding
 app.use(function (req, res, next) {
-  console.log('is the session here?', req.session)
-  console.log('cookies?', req.headers)
+  // console.log('is the session here?', req.session)
+  // console.log('cookies?', req.headers)
   next()
 })
 
@@ -98,7 +98,7 @@ app.use(function (req, res, next) {
   req.session.numberOfVisits = numberOfVisits + 1
   req.session.history = req.session.history || []
   req.session.history.push({ url: req.url, ip: req.ip })
-  console.log('session', req.session)
+  //console.log('session', req.session)
   next()
 })
 
