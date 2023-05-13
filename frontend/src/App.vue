@@ -31,12 +31,14 @@ export default {
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="Sourdough in a box" />
+      <HelloWorld msg="Sourdough" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/recipes">Recipes</RouterLink>
+        <RouterLink to="/login">Log in</RouterLink>
+        <RouterLink to="/signup">Sign up</RouterLink>
       </nav>
     </div>
   </header>
