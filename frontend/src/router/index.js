@@ -27,10 +27,10 @@ const router = createRouter({
       component: RecipesView
     },
     {
-      path: '/accounts',
+      path: '/login',
       name: 'login',
 
-      component: () => import('../views/AccountView.vue')
+      component: () => import('../views/LoginView.vue')
     },
     {
       path: '/recipes/:id',
