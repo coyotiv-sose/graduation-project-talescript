@@ -2,7 +2,7 @@ const { response } = require('./app')
 const User = require('./models/user')
 const axios = require('axios').default
 
-const URL = 'http://localhost:3001/'
+const URL = 'http://localhost:3000/'
 
 const alexander = new User('alexander', 'hello@all.com')
 
