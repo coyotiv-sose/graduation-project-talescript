@@ -46,8 +46,9 @@ class User {
   }
 
   // anything that motifies the state goes into the user class
-  createEvent(location, date) {
-    const event = new Event(location, date)
+  // fix function
+  async createEvent(title, date, description) {
+    const event = new Event({ title, date, description })
     this.events.push(event)
     event.attendees.push(this)
 
