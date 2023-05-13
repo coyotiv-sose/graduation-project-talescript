@@ -8,6 +8,13 @@ router.get('/', async function (req, res, next) {
   return res.send(users) // change url to /users
 })
 
+// create a new user
+router.post('/', async function (req, res, next) {
+  const { name, email, password } = req.body
+  const user = await User.register({ name, email }, password)
+  res.send(user)
+})
+
 router.get('/:userId', async function (req, res, next) {
   const user = await User.findById(req.params.userId)
   res.send(user)
