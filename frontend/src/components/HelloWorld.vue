@@ -12,9 +12,7 @@ defineProps({
     <h1 class="green">{{ msg }}</h1>
     <h3>
       Revolutionize Your Baking Process with Our Sourdough Calculator.
-      <a href="https://www.instagram.com/sourdoughbake/" target="_blank" rel="noopener"
-        >Visit us on Instagram</a
-      >
+
       <!-- + <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. -->
     </h3>
   </div>
