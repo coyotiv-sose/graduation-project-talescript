@@ -1,19 +1,27 @@
 // Sourdough app.
 // A fast track learning experience done in community to learn and share knowledge.
-
-// const User = require('./models/user')
-// const Event = require('./models/event')
-// const Recipe = require('./models/recipe')
-// const Note = require('./models/note')
-
 const axios = require('axios')
+
+const User = require('./models/user')
+const Recipe = require('./models/recipe')
+const Event = require('./models/event')
+const Note = require('./models/note')
+
+require('./database-connection')
 
 // avoids adding the url to axios methods
 axios.defaults.baseURL = 'http://api:3000'
 
 async function main() {
-  const newUser = await axios.post('/users', { name: 'alex', email: 'alex333@email.com' })
-  // const secondUser = await axios.post('/users', { name: 'alex555', email: 'alex555@email.com' })
+  await User.deleteMany()
+  await Recipe.deleteMany()
+
+  const newUser = await axios.post('/users', {
+    name: 'alex',
+    email: 'alex333@email.com',
+    password: '123456',
+  })
+  const secondUser = await axios.post('/users', { name: 'alex555', email: 'alex555@email.com', password: '123456' })
 
   const createRecipe = await axios.post('/recipes', {
     name: 'this savory title',
@@ -102,6 +110,7 @@ async function main() {
    * Event Routes
    */
   // create an event
+  // user model / createevent method
   const createEvent = await axios.post('/events', {
     title: 'this is an event',
     date: '04-04-2024',
