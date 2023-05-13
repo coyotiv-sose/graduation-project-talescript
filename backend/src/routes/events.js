@@ -16,6 +16,7 @@ router.get('/:eventId', async (req, res, next) => {
 })
 
 // create a new event
+// fix route - in user.js createevent
 router.post('/', async (req, res, next) => {
   const user = await User.findById(req.body.user)
   const event = await user.createEvent(req.body.title, req.body.date, req.body.description)
