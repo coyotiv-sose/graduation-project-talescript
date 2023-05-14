@@ -27,45 +27,55 @@ class User {
     return newRecipe
   }
 
-  editRecipe(recipe, title, ingredients) {
+  async editRecipe(recipe, title, ingredients) {
     recipe.title = title
     recipe.ingredients = ingredients
+    await recipe.save()
     return recipe
   }
 
-  deleteRecipe(recipe) {
+  async deleteRecipe(recipe) {
     const recipeIndex = this.recipes.indexOf(recipe)
     this.recipes.splice(recipeIndex, 1)
+    await this.save()
     return recipe
   }
 
-  copyRecipe(recipe) {
-    const newRecipe = new Recipe(recipe.title, recipe.ingredients)
+  async copyRecipe(recipe) {
+    const newRecipe = await Recipe.create(recipe.title, recipe.ingredients)
     this.recipes.push(newRecipe)
     return newRecipe
   }
 
   // anything that motifies the state goes into the user class
   // fix function
-  async createEvent(title, date, description) {
-    const event = new Event({ title, date, description })
+  async createEvent(title, description, location, date) {
+    const event = await Event.create({ title, description, location, date })
     this.events.push(event)
     event.attendees.push(this)
+    await this.save()
+    await event.save()
 
     return event
   }
 
-  joinEvent(event) {
+  async joinEvent(event) {
     this.events.push(event)
     event.attendees.push(this)
+    await this.save()
+    await event.save()
+
+    return event
   }
 
-  leaveEvent(event) {
+  async leaveEvent(event) {
     const eventIndex = this.events.indexOf(event)
     this.events.splice(eventIndex, 1)
 
     const removeAttendeeIndex = event.attendees.indexOf(this)
     event.attendees.splice(removeAttendeeIndex, 1)
+    await this.save()
+    await event.save()
 
     return event
   }
@@ -99,8 +109,8 @@ class User {
     return recipe.notes
   }
 
-  createCourse(title, description, price, startDate, endDate) {
-    const course = new Course(title, description, price, startDate, endDate)
+  async createCourse(title, description, price, startDate, endDate) {
+    const course = await Course.create(title, description, price, startDate, endDate)
     this.courses.push(course)
     return course
   }
