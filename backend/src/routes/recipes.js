@@ -59,7 +59,7 @@ router.delete('/:recipeId', async (req, res, next) => {
 
 // copy a recipe
 router.post('/:recipeId/copy', async (req, res, next) => {
-  const recipe = await Recipe.findById(req.params.recipeId)
+  const recipe = await Recipe.findById({ _id: req.params.recipeId })
   const user = await User.findById(req.body.user)
   const newRecipe = await user.createRecipe(recipe.title, recipe.ingredients)
   res.send(newRecipe)
@@ -67,10 +67,12 @@ router.post('/:recipeId/copy', async (req, res, next) => {
 
 // create a note
 router.post('/:recipeId/notes', async (req, res, next) => {
-  const recipe = await Recipe.findById(req.params.recipeId)
+  const recipe = await Recipe.findById({ _id: req.params.recipeId })
   const user = await User.findById(req.body.user)
 
   const note = await user.addNote(req.body.note, recipe)
+  await recipe.save()
+  await note.save()
 
   res.send(note)
 })

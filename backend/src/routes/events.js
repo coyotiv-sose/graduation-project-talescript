@@ -19,13 +19,13 @@ router.get('/:eventId', async (req, res, next) => {
 // fix route - in user.js createevent
 router.post('/', async (req, res, next) => {
   const user = await User.findById(req.body.user)
-  const event = await user.createEvent(req.body.title, req.body.date, req.body.description)
+  const event = await user.createEvent(req.body.title, req.body.description, req.body.location, req.body.date)
   res.send(event)
 })
 
 // update an event
-router.put('/:eventId', async (req, res, next) => {
-  const event = await Event.findById(req.params.eventId)
+router.put('/:id', async (req, res, next) => {
+  const event = await Event.findById({ _id: req.params.id })
   event.title = req.body.title
   event.date = req.body.date
   event.description = req.body.description
@@ -34,27 +34,27 @@ router.put('/:eventId', async (req, res, next) => {
 })
 
 // delete an event
-router.delete('/:eventId', async (req, res, next) => {
-  const event = await Event.findById(req.params.eventId)
-  await event.remove()
-  res.send(event)
+router.delete('/:id', async (req, res, next) => {
+  const event = await Event.findByIdAndDelete({ _id: req.params.id })
+  res.send(200)
 })
 
 // join an event
-router.post('/:eventId/join', async (req, res, next) => {
-  const event = await Event.findById(req.params.eventId)
+router.post('/:id/join', async (req, res, next) => {
+  const event = await Event.findById({ _id: req.params.id })
   const user = await User.findById(req.body.user)
-  await event.join(user)
+  await user.joinEvent(event)
   res.send(event)
 })
 
 // leave an event
 
-router.delete('/:eventId/attendees', async (req, res, next) => {
-  const event = await Event.findById(req.params.eventId)
+router.delete('/:id/attendees', async (req, res, next) => {
+  const event = await Event.findById({ _id: req.params.id })
   const user = await User.findById(req.body.user)
+  console.log('user', user)
   await user.leaveEvent(event)
-  const updatedEvent = await Event.findById(req.params.eventId)
+  const updatedEvent = await Event.findById({ _id: req.params.id })
   res.send(updatedEvent)
 })
 

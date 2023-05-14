@@ -38,10 +38,10 @@ router.put('/:userId', async (req, res, next) => {
 })
 
 router.delete('/:userId', async (req, res, next) => {
-  const user = await User.findById(req.params.userId)
+  const user = await User.findByIdAndDelete(req.params.userId)
   // if user doesn't exist, return error
   if (!user) return res.status(400).send('User does not exist')
-  await user.remove()
+
   res.send(user)
 })
 
