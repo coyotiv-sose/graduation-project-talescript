@@ -43,8 +43,8 @@ export default {
       </nav>
     </div>
   </header>
-  <!--<h1>sourdough {{ user?.name }} socket? {{ connected ? 'yes' : 'no' }}</h1>
--->
+  <h1>sourdough {{ user?.name }} socket? {{ connected ? 'yes' : 'no' }}</h1>
+
   <Suspense>
     <RouterView />
   </Suspense>

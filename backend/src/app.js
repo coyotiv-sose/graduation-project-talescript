@@ -143,6 +143,14 @@ app.createSocketServer = function (server) {
   // io.engine.use(passport.session())
   // console.log('socket.io server created')
 
+  app.set('io', io)
+
+  //io.engine.use(sessionMiddleware)
+  io.engine.use(passport.session())
+
+  console.log('socket.io server created')
+
+
   // io.on('connection', function (socket) {
   //   console.log('a user connected')
 
