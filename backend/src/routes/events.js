@@ -19,6 +19,9 @@ router.get('/:eventId', async (req, res, next) => {
 // fix route - in user.js createevent
 router.post('/', async (req, res, next) => {
   const user = await User.findById(req.body.user)
+  if (!user) {
+    return res.status(404).send('User not found')
+  }
   const event = await user.createEvent(req.body.title, req.body.description, req.body.location, req.body.date)
   res.send(event)
 })
