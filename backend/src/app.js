@@ -71,7 +71,6 @@ app.use(
 )
 
 app.use(passport.initialize())
-
 app.use(passport.session())
 
 // THIS BLOCK BREAKS RECIPE VIEW - not anymore after rebuilding
@@ -140,6 +139,10 @@ app.createSocketServer = function (server) {
     },
   })
 
+  // app.set('io', io)
+  // io.engine.use(passport.session())
+  // console.log('socket.io server created')
+
   app.set('io', io)
 
   //io.engine.use(sessionMiddleware)
@@ -147,13 +150,14 @@ app.createSocketServer = function (server) {
 
   console.log('socket.io server created')
 
-  io.on('connection', function (socket) {
-    console.log('a user connected')
 
-    socket.on('disconnect', function () {
-      console.log('user disconnected')
-    })
-  })
+  // io.on('connection', function (socket) {
+  //   console.log('a user connected')
+
+  //   socket.on('disconnect', function () {
+  //     console.log('user disconnected')
+  //   })
+  // })
 }
 
 module.exports = app

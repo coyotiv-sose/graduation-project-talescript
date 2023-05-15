@@ -43,8 +43,10 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 // join an event
-// add check to see if user is already attending
 router.post('/:id/attendees', async (req, res, next) => {
+  if (!req.body.user) {
+    return res.status(404).send('User not found')
+  }
   const event = await Event.findById({ _id: req.params.id })
   const user = await User.findById(req.body.user)
   await req.user.joinEvent(event)
@@ -55,10 +57,9 @@ router.post('/:id/attendees', async (req, res, next) => {
 
 router.delete('/:id/attendees', async (req, res, next) => {
   const event = await Event.findById({ _id: req.params.id })
-  console.log('events.js leaveEvent', event)
   const user = await User.findById(req.body.user)
-  console.log('user leaving event events.js', user)
-  await req.user.leaveEvent(event)
+  console.log('leaving an event', event)
+  await user.leaveEvent(event)
   const updatedEvent = await Event.findById({ _id: req.params.id })
   res.send(updatedEvent)
 })

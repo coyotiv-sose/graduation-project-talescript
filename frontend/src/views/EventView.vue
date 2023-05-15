@@ -17,10 +17,9 @@ export default {
 
     // create button for leaving event
     // add leave event method
-
     async join(id) {
       await this.joinEvent(id)
-      this.event.attendees.push(this)
+      //this.event.attendees.push(this)
     }
   }
 }
