@@ -91,19 +91,19 @@ async function main() {
   })
   console.log(`updateUser.data`, updateUser.data)
 
-  // delete a user
+  // delete a user !!!!!!! newUser is DELETED
   const deleteUser = await axios.delete(`/users/${newUser.data._id}`, {
     user: newUser.data._id,
   })
-  console.log(`deleteUser.data`, deleteUser.data)
+  console.log(`deleteUser.data`, deleteUser.data) // !!!!!!! newUser is DELETED
 
   // get all users
   const getAllUsers = await axios.get(`/users`)
   console.log(`getAllUsers.data`, getAllUsers.data)
 
   // get a single user
-  const getSingleUser = await axios.get(`/users/${newUser.data._id}`)
-  console.log(`getSingleUser.data, ${getSingleUser.data}`)
+  const getSingleUser = await axios.get(`/users/${secondUser.data._id}`)
+  console.log(`getSingleUser.data`, getSingleUser.data)
   /***
    * END of User Routes
    */
