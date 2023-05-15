@@ -10,6 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "start": "docker-compose up --build"
+    "start": "docker-compose up --build frontend api tests",
+    "noMore": "docker-compose up -d mongodb"
   }
 }
