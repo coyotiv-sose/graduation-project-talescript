@@ -44,6 +44,9 @@ router.delete('/:id', async (req, res, next) => {
 
 // join an event
 router.post('/:id/attendees', async (req, res, next) => {
+  if (!req.body.user) {
+    return res.status(404).send('User not found')
+  }
   const event = await Event.findById({ _id: req.params.id })
   const user = await User.findById(req.body.user)
   await req.user.joinEvent(event)
