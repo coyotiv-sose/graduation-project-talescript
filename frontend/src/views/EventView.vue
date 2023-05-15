@@ -1,0 +1,37 @@
+<script>
+import { mapActions } from 'pinia'
+import { eventStore } from '@/stores/event'
+
+export default {
+  name: 'EventsView',
+  data() {
+    return {
+      event: null
+    }
+  },
+  async created() {
+    this.event = await this.fetchEvent(this.$route.params.id)
+  },
+  methods: {
+    ...mapActions(eventStore, ['fetchEvent', 'joinEvent']),
+
+    async join(id) {
+      await this.joinEvent(id)
+      //this.event.attendees.push(this)
+    }
+  }
+}
+</script>
+<template>
+  <h2>Event detail page</h2>
+  <div v-if="!event">
+    <p>Loading.....</p>
+  </div>
+  <div v-else>
+    <h2>{{ event.title }}</h2>
+    <p>{{ event.description }}</p>
+    <p>{{ event.location }}</p>
+    <p>{{ event.date }}</p>
+    <button @click="join(event._id)">Join</button>
+  </div>
+</template>
