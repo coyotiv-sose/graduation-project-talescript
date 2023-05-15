@@ -5,7 +5,7 @@ const User = require('../models/user')
 
 router.get('/session', async function (req, res, next) {
   console.log('the current user is', req.user)
-  res.send(req.session)
+  res.send(req.user)
 })
 
 // router.post('/', async function (req, res, next) {
@@ -16,7 +16,6 @@ router.get('/session', async function (req, res, next) {
 
 router.post('/session', passport.authenticate('local', { failWithError: true }), function (req, res, next) {
   res.send(req.user)
-  res.send(req.session)
 })
 
 router.delete('/session', async function (req, res) {

@@ -70,6 +70,8 @@ app.use(
   })
 )
 
+app.use(passport.initialize())
+
 app.use(passport.session())
 
 // THIS BLOCK BREAKS RECIPE VIEW - not anymore after rebuilding
@@ -137,6 +139,11 @@ app.createSocketServer = function (server) {
       credentials: true,
     },
   })
+
+  app.set('io', io)
+
+  //io.engine.use(sessionMiddleware)
+  io.engine.use(passport.session())
 
   console.log('socket.io server created')
 

@@ -22,7 +22,7 @@ export default {
     ...mapActions(useSocketStore, ['init'])
   },
   computed: {
-    //...mapState(useAccountStore, ['user']),
+    ...mapState(useAccountStore, ['user']),
     ...mapState(useSocketStore, ['connected'])
   }
 }
@@ -37,13 +37,14 @@ export default {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/recipes">Recipes</RouterLink>
+        <RouterLink to="/events">Events</RouterLink>
         <RouterLink to="/login">Log in</RouterLink>
         <RouterLink to="/signup">Sign up</RouterLink>
       </nav>
     </div>
   </header>
-  <!--<h1>sourdough {{ user?.name }} socket? {{ connected ? 'yes' : 'no' }}</h1>
--->
+  <h1>sourdough {{ user?.name }} socket? {{ connected ? 'yes' : 'no' }}</h1>
+
   <Suspense>
     <RouterView />
   </Suspense>
