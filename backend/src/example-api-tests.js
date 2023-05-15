@@ -1,29 +1,31 @@
 // Sourdough app.
 // A fast track learning experience done in community to learn and share knowledge.
-const axios = require(`axios`)
 
-const User = require(`./models/user`)
-const Recipe = require(`./models/recipe`)
-const Event = require(`./models/event`)
-const Note = require(`./models/note`)
+const axios = require('axios')
 
-require(`./database-connection`)
+const User = require('./models/user')
+const Recipe = require('./models/recipe')
+const Event = require('./models/event')
+const Note = require('./models/note')
+
+require('./database-connection')
 
 // avoids adding the url to axios methods
-axios.defaults.baseURL = `http://api:3000`
+axios.defaults.baseURL = 'http://api:3000'
 
 async function main() {
   await User.deleteMany()
   await Recipe.deleteMany()
 
-  const newUser = await axios.post(`/users`, {
+  const newUser = await axios.post('/users', {
     name: `alex`,
     email: `alex54@email.com`,
     password: `123456`,
   })
-  const secondUser = await axios.post(`/users`, { name: `alex5455`, email: `alex52342@email.com`, password: `123456` })
+  const secondUser = await axios.post('/users', { name: `alex5455`, email: `alex52342@email.com`, password: `123456` })
+  console.log(`secondUser.data._id, ${secondUser.data._id}`)
 
-  const createRecipe = await axios.post(`/recipes`, {
+  const createRecipe = await axios.post('/recipes', {
     name: `this savory title`,
     ingredients: [
       { quantity: 400, name: `flour` },
@@ -49,28 +51,28 @@ async function main() {
    * Note Routes
    */
   // create a note
-  const createNote = await axios.post(`recipes/${createRecipe.data._id}/notes`, {
-    note: `this is a note`,
-    user: `645cd9bfd2c40a2b0fa59217`,
-    //user: secondUser.data._id,
-  })
-  console.log(`createNote.data`, createNote.data)
+  // const createNote = await axios.post(`recipes/${createRecipe.data._id}/notes`, {
+  //   note: `this is a note`,
+  //   user: `645cd9bfd2c40a2b0fa59217`,
+  //   //user: secondUser.data._id,
+  // })
+  // console.log(`createNote.data`, createNote.data)
 
-  // // edit a note
-  const editNote = await axios.put(`recipes/${createRecipe.data._id}/notes/${createNote.data._id}`, {
-    note: `this is an edited note`,
+  // edit a note
+  // const editNote = await axios.put(`recipes/${createRecipe.data._id}/notes/${createNote.data._id}`, {
+  //   note: `this is an edited note`,
 
-    user: secondUser.data._id,
-  })
-  console.log(`editNote.data`, editNote.data)
+  //   user: secondUser.data._id,
+  // })
+  // console.log(`editNote.data`, editNote.data)
 
-  // // delete a note
-  const deleteNote = await axios.delete(`recipes/${createRecipe.data._id}/notes/${createNote.data._id}`, {
-    note: `this is a note`,
-    recipe: createRecipe.data._id,
-    user: secondUser.data._id,
-  })
-  console.log(`deleteNote.data`, deleteNote.data)
+  // delete a note
+  // const deleteNote = await axios.delete(`recipes/${createRecipe.data._id}/notes/${createNote.data._id}`, {
+  //   note: `this is a note`,
+  //   recipe: createRecipe.data._id,
+  //   user: secondUser.data._id,
+  // })
+  // console.log(`deleteNote.data`, deleteNote.data)
   /***
    * END OF Note Routes
    */
@@ -101,7 +103,7 @@ async function main() {
 
   // get a single user
   const getSingleUser = await axios.get(`/users/${newUser.data._id}`)
-  console.log(`getSingleUser.data`, getSingleUser.data)
+  console.log(`getSingleUser.data, ${getSingleUser.data}`)
   /***
    * END of User Routes
    */
@@ -121,7 +123,7 @@ async function main() {
   })
   console.log(`createEvent.data`, createEvent.data)
 
-  // edit an event
+  //   // edit an event
   const editEvent = await axios.put(`/events/${createEvent.data._id}`, {
     title: `this is an edited event`,
     date: `04-04-2024`,
@@ -130,7 +132,7 @@ async function main() {
   })
   console.log(`editEvent.data`, editEvent.data)
 
-  // join an event
+  //   // join an event
   const joinEvent = await axios.post(`/events/${createEvent.data._id}/join`, {
     title: `this is an event`,
     date: `04-04-2024`,
@@ -144,12 +146,12 @@ async function main() {
     password: `123456`,
   })
 
-  // leave an event
+  //   // leave an event
   const leaveEvent = await axios.delete(`/events/${createEvent.data._id}/attendees`, {
     user: '64601ba6dddc18f1184e8022',
   })
 
-  // delete an event
+  //   // delete an event
   const deleteEvent = await axios.delete(`/events/${createEvent.data._id}`, {
     title: `this is an event`,
     date: `04-04-2024`,
@@ -157,79 +159,79 @@ async function main() {
     user: newUser.data._id,
   })
 
-  // get all events
+  //   // get all events
   const getAllEvents = await axios.get(`/events`)
   console.log(`getAllEvents.data`, getAllEvents.data)
 
-  /***
-   * END of Event Routes
-   */
+  //   /***
+  //    * END of Event Routes
+  //    */
 
-  /***
-   * Courses Routes
-   */
-  // create a course
-  const createCourse = await axios.post(`/courses`, {
-    title: `this is a course`,
-    date: `04-04-2024`,
-    description: `this is a description`,
-    user: newUser.data._id,
-  })
-  console.log(`createCourse.data`, createCourse.data)
+  //   /***
+  //    * Courses Routes
+  //    */
+  //   // create a course
+  //   const createCourse = await axios.post(`/courses`, {
+  //     title: `this is a course`,
+  //     date: `04-04-2024`,
+  //     description: `this is a description`,
+  //     user: newUser.data._id,
+  //   })
+  //   console.log(`createCourse.data`, createCourse.data)
 
-  // edit a course
-  const editCourse = await axios.put(`/courses/:${createCourse.data._id}`, {
-    title: `this is an edited course`,
-    date: `04-04-2024`,
-    description: `this is a new description`,
-    user: newUser.data._id,
-  })
+  //   // edit a course
+  //   const editCourse = await axios.put(`/courses/:${createCourse.data._id}`, {
+  //     title: `this is an edited course`,
+  //     date: `04-04-2024`,
+  //     description: `this is a new description`,
+  //     user: newUser.data._id,
+  //   })
 
-  // join a course
-  const joinCourse = await axios.post(`/courses/${createCourse.data._id}/join`, {
-    title: `this is a course`,
-    date: `04-04-2024`,
-    description: `this is a description`,
-    user: newUser.data._id,
-  })
+  //   // join a course
+  //   const joinCourse = await axios.post(`/courses/${createCourse.data._id}/join`, {
+  //     title: `this is a course`,
+  //     date: `04-04-2024`,
+  //     description: `this is a description`,
+  //     user: newUser.data._id,
+  //   })
 
-  // leave a course
-  const leaveCourse = await axios.delete(`/courses/${createCourse.data._id}/attendees`, {
-    title: `this is a course`,
-    date: `04-04-2024`,
-    description: `this is a description`,
-    user: newUser.data._id,
-  })
-  console.log(`leaveCourse.data`, leaveCourse.data)
+  //   // leave a course
+  //   const leaveCourse = await axios.delete(`/courses/${createCourse.data._id}/attendees`, {
+  //     title: `this is a course`,
+  //     date: `04-04-2024`,
+  //     description: `this is a description`,
+  //     user: newUser.data._id,
+  //   })
+  //   console.log(`leaveCourse.data`, leaveCourse.data)
 
-  // delete a course
-  const deleteCourse = await axios.delete(`/courses/${createCourse.data._id}`, {
-    title: `this is a course`,
-    date: `04-04-2024`,
-    description: `this is a description`,
-    user: newUser.data._id,
-  })
+  //   // delete a course
+  //   const deleteCourse = await axios.delete(`/courses/${createCourse.data._id}`, {
+  //     title: `this is a course`,
+  //     date: `04-04-2024`,
+  //     description: `this is a description`,
+  //     user: newUser.data._id,
+  //   })
 
-  // get all courses
-  const getAllCourses = await axios.get(`/courses`)
-  console.log(`getAllCourses.data`, getAllCourses.data)
+  //   // get all courses
+  //   const getAllCourses = await axios.get(`/courses`)
+  //   console.log(`getAllCourses.data`, getAllCourses.data)
 
-  /***
-   * END of Courses Routes
-   */
+  //   /***
+  //    * END of Courses Routes
+  //    */
 
-  /** Create a new user passpor */
-  const newUserPassport = await axios.post(`/accounts`, {
-    name: `alex`,
-    email: `alex1234@passport.com`,
-    password: `123456`,
-  })
-  console.log(`newUserPassport.data`, newUserPassport.data)
+  //   /** Create a new user passpor */
+  //   const newUserPassport = await axios.post(`/accounts`, {
+  //     name: `alex`,
+  //     email: `alex1234@passport.com`,
+  //     password: `123456`,
+  //   })
+  //   console.log(`newUserPassport.data`, newUserPassport.data)
 
-  const loggedInNewUserPassport = await axios.post(`/accounts/session`, {
-    email: `alex123456@passport.com`,
-    password: `123456`,
-  })
+  //   const loggedInNewUserPassport = await axios.post(`/accounts/session`, {
+  //     email: `alex123456@passport.com`,
+  //     password: `123456`,
+  //   })
 } // end of main
 
 main().catch(error => {
