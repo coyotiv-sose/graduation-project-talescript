@@ -58,7 +58,7 @@ router.delete('/:id/attendees', async (req, res, next) => {
   console.log('events.js leaveEvent', event)
   const user = await User.findById(req.body.user)
   console.log('user leaving event events.js', user)
-  await user.leaveEvent(event)
+  await req.user.leaveEvent(event)
   const updatedEvent = await Event.findById({ _id: req.params.id })
   res.send(updatedEvent)
 })
