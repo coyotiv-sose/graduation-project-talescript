@@ -16,7 +16,6 @@ router.get('/session', async function (req, res, next) {
 
 router.post('/session', passport.authenticate('local', { failWithError: true }), function (req, res, next) {
   res.send(req.user)
-  res.send(req.session)
 })
 
 router.delete('/session', async function (req, res) {
