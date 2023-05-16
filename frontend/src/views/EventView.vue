@@ -19,7 +19,7 @@ export default {
     // add leave event method
     async join(id) {
       await this.joinEvent(id)
-      //this.event.attendees.push(this)
+      this.event.attendees.push(this)
     }
   }
 }
@@ -34,6 +34,7 @@ export default {
     <p>{{ event.description }}</p>
     <p>{{ event.location }}</p>
     <p>{{ event.date }}</p>
+    <p v-for="attendee in event.attendees" :key="attendee._id">{{ attendee.name }}</p>
     <button @click="join(event._id)">Join</button>
   </div>
 </template>
