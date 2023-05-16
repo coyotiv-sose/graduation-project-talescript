@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+// another file
+
+const auth = require('../lib/auth')
 
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
@@ -29,7 +32,7 @@ router.post('/', async (req, res, next) => {
   res.send(user)
 })
 
-router.put('/:userId', async (req, res, next) => {
+router.put('/:userId', auth, async (req, res, next) => {
   const user = await User.findById(req.params.userId)
   user.name = req.body.name
   user.email = req.body.email
