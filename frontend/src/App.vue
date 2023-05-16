@@ -38,8 +38,10 @@ export default {
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/recipes">Recipes</RouterLink>
         <RouterLink to="/events">Events</RouterLink>
-        <RouterLink to="/login">Log in</RouterLink>
-        <RouterLink to="/signup">Sign up</RouterLink>
+        <RouterLink v-if="!user" to="/login">Log in</RouterLink>
+        <a href="#" rel="noopener noreferrer" v-if="user" @click="logout">Logout</a>
+
+        <RouterLink v-if="!user" to="/signup">Sign up</RouterLink>
       </nav>
     </div>
   </header>
