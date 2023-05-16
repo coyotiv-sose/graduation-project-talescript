@@ -10,10 +10,11 @@ export default {
   },
   methods: {
     async login() {
-      await axios.post('/accounts/session', {
+      await axios.post('http://localhost:3000/accounts/session', {
         email: this.email,
         password: this.password
       })
+      this.$router.push('/')
     }
   }
 }
