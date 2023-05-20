@@ -63,6 +63,8 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === 'production',
       maxAge: 1000 * 60 * 60 * 24 * 15,
+      // sameSite: 'lax',
+      // domain: process.env.NODE_ENV === 'production' ? 'https://www.alexanderjacks.com' : 'localhost:3000',
     },
     //store: MongoStore.create({ mongoUrl: process.env.MONGODB_CONNECTION_STRING }),
     //ttl: 60 * 60 * 24 * 15, // 60sec * 60min * 24h * 15days
@@ -72,13 +74,6 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.session())
-
-// THIS BLOCK BREAKS RECIPE VIEW - not anymore after rebuilding
-app.use(function (req, res, next) {
-  // console.log('is the session here?', req.session)
-  // console.log('cookies?', req.headers)
-  next()
-})
 
 // app.use(function (req, res, next) {
 //   console.log(process.env.NODE_ENV) // undefined
@@ -149,7 +144,6 @@ app.createSocketServer = function (server) {
   io.engine.use(passport.session())
 
   console.log('socket.io server created')
-
 
   // io.on('connection', function (socket) {
   //   console.log('a user connected')
