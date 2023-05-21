@@ -27,6 +27,7 @@ const recipeRouter = require('./routes/recipes')
 const indexRouter = require('./routes/index')
 const accountsRouter = require('./routes/accounts')
 const eventsRouter = require('./routes/events')
+const coursesRouter = require('./routes/courses')
 
 // requires the model with Passport-Local Mongoose plugged in
 const User = require('./models/user')
@@ -109,6 +110,7 @@ app.use('/users', usersRouter)
 app.use('/recipes', recipeRouter)
 app.use('/accounts', accountsRouter)
 app.use('/events', eventsRouter)
+app.use('/courses', coursesRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
