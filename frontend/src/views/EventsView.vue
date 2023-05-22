@@ -24,12 +24,19 @@ export default {
     <p>Loading.....</p>
   </div>
   <div v-else>
-    <ul>
-      <li v-for="event in events" :key="event._id">
-        <a :href="`/events/${event._id}`">{{ event.title }}</a>
-        {{ event.description }} and {{ event.location }} - location {{ event.date }} - date
-        {{ event.createdAt }}
-      </li>
-    </ul>
+    <template v-for="event in events" :key="event._id">
+      <article>
+        <header>
+          <a :href="`/events/${event._id}`">{{ event.title }}</a>
+        </header>
+        <ul>
+          <li>
+            <li>{{ event.description }}</li>
+            <li>{{ event.location }}</li>
+          </li>
+        </ul>
+        <footer>Date: {{ event.date }}</footer>
+      </article>
+    </template>
   </div>
 </template>

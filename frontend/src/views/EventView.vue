@@ -35,13 +35,18 @@ export default {
   </div>
   <div v-else>
     <h2>{{ event.title }}</h2>
-    <p>{{ event.description }}</p>
-    <p>{{ event.location }}</p>
-    <p>{{ event.date }}</p>
-    <p v-for="attendee in event.attendees" :key="attendee._id">{{ attendee.name }}</p>
+    <ul>
+      <li>{{ event.description }}</li>
+      <li>{{ event.location }}</li>
+      <li>{{ event.date }}</li>
+    </ul>
     <div class="grid">
       <button @click="join(event._id)">Join</button>
       <button class="secondary" @click="leave(event._id)">Leave</button>
     </div>
+    <h2>Attendees</h2>
+    <template v-for="attendee in event.attendees" :key="attendee._id">
+      <article>{{ attendee.name }}</article>
+    </template>
   </div>
 </template>
