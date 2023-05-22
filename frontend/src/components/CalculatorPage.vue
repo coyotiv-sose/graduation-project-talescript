@@ -47,7 +47,7 @@ export default {
     <form @submit.prevent="submitRecipe">
       <div class="grid">
         <div>
-          <label for="product"> Name </label
+          <label for="product"> Bakery Product Name </label
           ><!--req.body.product backend-->
           <input type="text" name="product" id="product" v-model="product" />
         </div>
@@ -57,10 +57,14 @@ export default {
         </div>
       </div>
 
-      <div>
-        <label for="ingredient"> Add ingredient </label>
-        <input type="text" name="ingredient" id="ingredient" v-model="ingredient.name" />
-        <input type="number" v-model="ingredient.weight" />
+      <div class="grid">
+        <div>
+          <label for="ingredient"> Ingredient </label>
+          <input type="text" name="ingredient" id="ingredient" v-model="ingredient.name" />
+        </div>
+        <div>
+          <label>Weight<input type="number" v-model="ingredient.weight" /></label>
+        </div>
       </div>
       <button @click="addIngredient">Add Ingredient</button>
       <div>
