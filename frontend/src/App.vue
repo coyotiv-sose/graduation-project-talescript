@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { useAccountStore } from './stores/account'
-import CreatePage from './components/CalculatorPage.vue'
+
 // import { useSocketStore } from './stores/socket'
 
 import { mapActions, mapState } from 'pinia'
@@ -53,7 +53,7 @@ export default {
         </ul>
         <ul>
           <li><RouterLink to="/">Home</RouterLink></li>
-          <li><RouterLink to="/about">About</RouterLink></li>
+          <li><RouterLink to="/calculator">Calculator</RouterLink></li>
           <li><RouterLink to="/recipes">Recipes</RouterLink></li>
           <li><RouterLink to="/events">Events</RouterLink></li>
           <li><RouterLink v-if="!user" to="/login">Log in</RouterLink></li>
@@ -66,6 +66,7 @@ export default {
   </header>
   <!-- <h1>sourdough {{ user?.name }} socket? {{ connected ? 'yes' : 'no' }}</h1> -->
   <HelloWorld msg="Sourdough" />
+
   <Suspense>
     <RouterView />
   </Suspense>
