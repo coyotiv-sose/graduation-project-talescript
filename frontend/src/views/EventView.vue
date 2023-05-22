@@ -13,13 +13,17 @@ export default {
     this.event = await this.fetchEvent(this.$route.params.id)
   },
   methods: {
-    ...mapActions(eventStore, ['fetchEvent', 'joinEvent']),
+    ...mapActions(eventStore, ['fetchEvent', 'joinEvent', 'leaveEvent']),
 
     // create button for leaving event
     // add leave event method
     async join(id) {
       await this.joinEvent(id)
       this.event.attendees.push(this)
+    },
+    async leave(id) {
+      await this.leaveEvent(id)
+      this.event.attendees.pop(this)
     }
   }
 }
@@ -35,6 +39,9 @@ export default {
     <p>{{ event.location }}</p>
     <p>{{ event.date }}</p>
     <p v-for="attendee in event.attendees" :key="attendee._id">{{ attendee.name }}</p>
-    <button @click="join(event._id)">Join</button>
+    <div class="grid">
+      <button @click="join(event._id)">Join</button>
+      <button class="secondary" @click="leave(event._id)">Leave</button>
+    </div>
   </div>
 </template>
