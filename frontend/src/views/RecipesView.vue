@@ -21,12 +21,38 @@ export default {
     <ul>
       <!--get recipe route for a single recipe-->
 
-      <li v-for="recipe in recipes" :key="recipe._id">
-        <a :href="`/recipes/${recipe._id}`">{{ recipe.title }}</a>
-        {{ recipe.description }} and {{ recipe.ingredients[0] }} - Ingredients length
-        {{ recipe.ingredients.length }} - and
-        {{ recipe.createdAt }}
-      </li>
+      <template v-for="recipe in recipes" :key="recipe._id">
+        <article>
+          <header>
+            <a :href="`/recipes/${recipe._id}`">{{ recipe.title }}</a>
+          </header>
+          <li>
+            <ul>
+              {{
+                recipe.description
+              }}
+            </ul>
+            <ul v-for="ingredient in recipe.ingredients">
+              {{
+                ingredient.name
+              }}:
+              {{
+                ingredient.quantity
+              }}
+            </ul>
+          </li>
+          <footer>{{ recipe.createdAt }}</footer>
+        </article>
+      </template>
     </ul>
   </main>
 </template>
+
+<style scoped>
+ul {
+  list-style-type: none;
+}
+ol {
+  list-style-type: none;
+}
+</style>

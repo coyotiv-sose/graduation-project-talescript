@@ -23,7 +23,23 @@ export default {
   <div v-else>
     <h2>{{ recipe.title }}</h2>
     <p>{{ recipe.description }}</p>
-    <p>{{ recipe.ingredients }}</p>
-    <p>{{ recipe.instructions }}</p>
+    <template v-for="ingredient in recipe.ingredients" :key="ingredient._id">
+      <ul>
+        <li>{{ ingredient.name }}: {{ ingredient.quantity }}</li>
+      </ul>
+    </template>
+
+    <template v-for="note in recipe.notes" :key="note._id">
+      <p>{{ note.recipeNotes }}</p>
+    </template>
   </div>
 </template>
+
+<style scoped>
+ul {
+  list-style-type: none;
+}
+ol {
+  list-style-type: none;
+}
+</style>
