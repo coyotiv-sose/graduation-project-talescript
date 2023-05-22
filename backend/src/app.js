@@ -64,7 +64,7 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === 'production',
       maxAge: 1000 * 60 * 60 * 24 * 15,
-      // sameSite: 'lax',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       // domain: process.env.NODE_ENV === 'production' ? 'https://www.alexanderjacks.com' : 'localhost:3000',
     },
     //store: MongoStore.create({ mongoUrl: process.env.MONGODB_CONNECTION_STRING }),
