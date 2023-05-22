@@ -14,6 +14,9 @@ export const eventStore = defineStore('Events', {
     },
     async joinEvent(id) {
       return (await axios.post(`/events/${id}/attendees`)).data
+    },
+    async leaveEvent(id) {
+      return (await axios.delete(`/events/${id}/attendees`)).data
     }
   }
 })
