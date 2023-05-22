@@ -46,14 +46,14 @@ router.put('/:recipeId', async (req, res, next) => {
   const recipe = await Recipe.findById(req.params.recipeId)
   recipe.title = req.body.title
   recipe.ingredients = req.body.ingredients
-  await recipe.save()
+  await req.recipe.save()
   res.send(recipe)
 })
 
 // delete a recipe
 router.delete('/:recipeId', async (req, res, next) => {
   const recipe = await Recipe.findById(req.params.recipeId)
-  await recipe.remove()
+  await req.recipe.remove()
   res.send(recipe)
 })
 
@@ -71,8 +71,8 @@ router.post('/:recipeId/notes', async (req, res, next) => {
   const user = await User.findById(req.body.user)
 
   const note = await user.addNote(req.body.note, recipe)
-  await recipe.save()
-  await note.save()
+  await req.recipe.save()
+  await req.note.save()
 
   res.send(note)
 })
@@ -81,7 +81,7 @@ router.post('/:recipeId/notes', async (req, res, next) => {
 router.put('/:recipeId/notes/:noteId', async (req, res, next) => {
   const note = await Note.findById(req.params.noteId)
   note.recipeNotes = req.body.note
-  await note.save()
+  await req.note.save()
   res.send(note)
 })
 

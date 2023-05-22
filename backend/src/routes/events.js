@@ -56,10 +56,13 @@ router.post('/:id/attendees', async (req, res, next) => {
 // leave an event
 
 router.delete('/:id/attendees', async (req, res, next) => {
+  if (!req.user) {
+    return res.status(404).send('User not found')
+  }
   const event = await Event.findById({ _id: req.params.id })
   const user = await User.findById(req.body.user)
   console.log('leaving an event', event)
-  await user.leaveEvent(event)
+  await req.user.leaveEvent(event)
   const updatedEvent = await Event.findById({ _id: req.params.id })
   res.send(updatedEvent)
 })

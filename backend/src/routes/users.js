@@ -28,7 +28,7 @@ router.post('/', async (req, res, next) => {
   // new method created in user.js static
   const user = await User.create({ name: req.body.name, email: req.body.email })
   // if user or email already exists in db, return error
-  if (!user) return res.status(400).send('User already exists')
+  if (!req.user) return res.status(400).send('User already exists')
   res.send(user)
 })
 
@@ -36,14 +36,14 @@ router.put('/:userId', auth, async (req, res, next) => {
   const user = await User.findById(req.params.userId)
   user.name = req.body.name
   user.email = req.body.email
-  await user.save()
+  await req.user.save()
   res.send(user)
 })
 
 router.delete('/:userId', async (req, res, next) => {
   const user = await User.findByIdAndDelete(req.params.userId)
   // if user doesn't exist, return error
-  if (!user) return res.status(400).send('User does not exist')
+  if (!req.user) return res.status(400).send('User does not exist')
 
   res.send(user)
 })

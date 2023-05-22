@@ -28,7 +28,7 @@ router.put('/:courseId', async (req, res, next) => {
   course.title = req.body.title
   course.date = req.body.date
   course.description = req.body.description
-  await course.save()
+  await req.course.save()
   res.send(course)
 })
 
