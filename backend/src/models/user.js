@@ -13,10 +13,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe', autopopulate: true }],
-  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note', autopopulate: true }],
-  events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event', autopopulate: true }],
-  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course', autopopulate: true }],
+  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe', autopopulate: { maxDepth: 1, limit: 10 } }],
+  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note', autopopulate: { maxDepth: 1, limit: 10 } }],
+  events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event', autopopulate: { maxDepth: 1, limit: 10 } }],
+  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course', autopopulate: { maxDepth: 1, limit: 10 } }],
 })
 
 class User {

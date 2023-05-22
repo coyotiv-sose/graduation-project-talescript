@@ -7,7 +7,7 @@ const eventSchema = new mongoose.Schema(
     description: String,
     location: String,
     date: Date,
-    attendees: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', autopopulate: true }],
+    attendees: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', autopopulate: { maxDepth: 1, limit: 10 } }],
   },
   { timestamps: true }
 )
