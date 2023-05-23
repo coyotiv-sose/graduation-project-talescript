@@ -65,7 +65,7 @@ export default {
     </div>
   </header>
   <!-- <h1>sourdough {{ user?.name }} socket? {{ connected ? 'yes' : 'no' }}</h1> -->
-  <HelloWorld msg="Sourdough" />
+  <!-- <HelloWorld msg="Sourdough" /> -->
 
   <Suspense>
     <RouterView />
