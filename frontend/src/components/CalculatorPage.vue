@@ -5,7 +5,7 @@ import { bakersMath } from 'bakers-math'
 export default {
   data() {
     return {
-      product: 'sdsds',
+      product: 'buns',
       individualWeight: 0,
       quantity: 0,
       totalPercentage: 0,
@@ -13,7 +13,7 @@ export default {
       flourWeight: 0,
       ingredient: {
         name: '',
-        weight: 0
+        percentage: 0
       },
       ingredients: []
     }
@@ -33,9 +33,15 @@ export default {
       this.$router.push(`/recipes/${response.data._id}`)
     },
     addIngredient(e) {
-      this.ingredients.push({ name: this.ingredient.name, weight: this.ingredient.weight })
-      this.ingredient.name = ''
-      this.ingredient.weight = 0
+      if (this.ingredient.name && this.ingredient.percentage > 0) {
+        this.ingredients.push({
+          name: this.ingredient.name,
+          percentage: this.ingredient.percentage
+        })
+        this.ingredient.name = ''
+        this.ingredient.percentage = 0
+      }
+
       e.preventDefault()
     }
   }
@@ -52,7 +58,11 @@ export default {
           <input type="text" name="product" id="product" v-model="product" />
         </div>
         <div>
-          <label for="quantity">Quantity</label>
+          <label for="weight">Weight of each {{ product }}</label>
+          <input type="number" name="weight" id="weight" v-model="weight" />
+        </div>
+        <div>
+          <label for="quantity">How many are you making?</label>
           <input type="number" name="quantity" id="quantity" v-model="quantity" />
         </div>
       </div>
@@ -63,7 +73,7 @@ export default {
           <input type="text" name="ingredient" id="ingredient" v-model="ingredient.name" />
         </div>
         <div>
-          <label>Weight<input type="number" v-model="ingredient.weight" /></label>
+          <label>Percentage<input type="number" v-model="ingredient.percentage" /></label>
         </div>
       </div>
       <button @click="addIngredient">Add Ingredient</button>
@@ -73,6 +83,26 @@ export default {
     </form>
 
     <section>
+      <table>
+        <tr>
+          <th>Product Name</th>
+          <th>Weight</th>
+          <th>Quantity</th>
+        </tr>
+        <tr>
+          <th>{{ product }}</th>
+          <th>{{ weight }}</th>
+          <th>{{ quantity }}</th>
+        </tr>
+        <tr>
+          <th>Ingredient</th>
+          <th>Percentage</th>
+        </tr>
+        <tr v-for="ingredient in ingredients" :key="ingredient._id">
+          <th>{{ ingredient.name }}</th>
+          <th>{{ ingredient.percentage }}%</th>
+        </tr>
+      </table>
       <h2>Recipe</h2>
       <div>
         <p>Product: {{ product }}</p>
@@ -81,12 +111,6 @@ export default {
         <p>Total percentage: {{ totalPercentage }}</p>
         <p>Total weight: {{ totalWeight }}</p>
         <p>Flour weight: {{ flourWeight }}</p>
-        <p>Ingredients:</p>
-        <ul>
-          <li v-for="ingredient in ingredients" :key="ingredient._id">
-            {{ ingredient.name }}: {{ ingredient.weight }}
-          </li>
-        </ul>
       </div>
     </section>
   </div>
