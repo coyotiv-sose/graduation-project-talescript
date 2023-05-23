@@ -5,7 +5,7 @@ import { bakersMath } from 'bakers-math'
 export default {
   data() {
     return {
-      product: 'buns',
+      product: '',
       individualWeight: 0,
       quantity: 0,
       totalPercentage: 0,
@@ -42,7 +42,7 @@ export default {
         this.ingredient.percentage = 0
       }
 
-      e.preventDefault()
+      console.log(e)
     }
   }
 }
@@ -93,6 +93,11 @@ export default {
           <th>{{ product }}</th>
           <th>{{ weight }}</th>
           <th>{{ quantity }}</th>
+        </tr>
+        <tr>
+          <td>
+            <br />
+          </td>
         </tr>
         <tr>
           <th>Ingredient</th>
