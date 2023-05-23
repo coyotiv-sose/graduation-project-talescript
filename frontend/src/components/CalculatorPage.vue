@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios'
-import { bakersMath } from 'bakers-math'
+import { RecipeCreator } from 'bakers-math'
 
 export default {
   data() {
@@ -22,15 +22,10 @@ export default {
     async submitRecipe() {
       // change to axiosURL
       const response = await axios.post('http://localhost:3000/recipes', {
-        name: this.product,
-        // individualWeight: this.individualWeight,
-        // quantity: this.quantity,
-        // totalPercentage: this.totalPercentage,
-        // totalWeight: this.totalWeight,
-        // flourWeight: this.flourWeight,
-        ingredients: this.ingredients
+        name: data.ingredient.name,
+        ingredients: data.ingredient.percentage
       })
-      this.$router.push(`/recipes/${response.data._id}`)
+      // this.$router.push(`/recipes/${response.data._id}`)
     },
     addIngredient(e) {
       if (this.ingredient.name && this.ingredient.percentage > 0) {
@@ -42,8 +37,24 @@ export default {
         this.ingredient.percentage = 0
       }
 
-      console.log(e)
+      e.preventDefault()
     }
+    // calculate(e) {
+    //   const recipe = new RecipeCreator({
+    //     product: this.product,
+    //     individualWeight: this.individualWeight,
+    //     quantity: this.quantity
+    //   })
+
+    //   recipe.addIngredient(this.ingredient.name, this.ingredient.percentage)
+
+    //   recipe.creatRecipe()
+
+    //   this.totalPercentage = recipe.totalPercentage
+    //   this.totalWeight = recipe.totalWeight
+    //   this.flourWeight = recipe.flourWeight
+    //   e.preventDefault()
+    // }
   }
 }
 </script>
@@ -113,9 +124,13 @@ export default {
         <p>Product: {{ product }}</p>
         <p>Quantity: {{ quantity }}</p>
         <p>Individual weight: {{ individualWeight }}</p>
+        <!-- not calculated -->
         <p>Total percentage: {{ totalPercentage }}</p>
+        <!-- not calculated -->
         <p>Total weight: {{ totalWeight }}</p>
+        <!-- not calculated -->
         <p>Flour weight: {{ flourWeight }}</p>
+        <!-- not calculated -->
       </div>
     </section>
   </div>
