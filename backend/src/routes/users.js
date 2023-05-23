@@ -48,6 +48,21 @@ router.delete('/:userId', async (req, res, next) => {
   res.send(user)
 })
 
+// router.delete('/:userId', async (req, res, next) => {
+//   try {
+//     const deletedUser = await User.findByIdAndDelete(req.params.userId);
+
+//     if (!deletedUser) {
+//       return res.status(404).send('User not found');
+//     }
+
+//     res.status(200).json(deletedUser);
+//   } catch (error) {
+//     // Handle any errors that occur during deletion
+//     next(error);
+//   }
+// });
+
 // delete other properties of user / composition between classes
 
 /* router.post('/', function (req, res, next) {
