@@ -8,6 +8,11 @@ import SupportIcon from './icons/IconSupport.vue'
 </script>
 
 <template>
+  <header>
+    <h1>Create, Save, and Share Delicious Baked Recipes</h1>
+    <h3>Unlock Your Culinary Creativity with Our Powerful Recipe Calculator</h3>
+  </header>
+
   <!-- <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
@@ -84,3 +89,9 @@ import SupportIcon from './icons/IconSupport.vue'
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
   </WelcomeItem> -->
 </template>
+<style scoped>
+header {
+  margin-top: 4.5rem;
+  max-width: 54ch;
+}
+</style>
