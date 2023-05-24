@@ -36,9 +36,16 @@ router.get('/:recipeId', async (req, res, next) => {
 
 // createRecipe
 router.post('/', async (req, res, next) => {
-  const user = await User.findById(req.body.user)
-  const newRecipe = await user.createRecipe(req.body.name, req.body.ingredients)
-  res.send(newRecipe)
+  // const user = await User.findById(req.body.user)
+  try {
+    if (!req.user) {
+      return next({ status: 401, message: 'Unauthorized' })
+    }
+    const newRecipe = await req.user.createRecipe(req.body.name, req.body.ingredients)
+    res.send(newRecipe)
+  } catch (error) {
+    next(error)
+  }
 })
 
 // edit a recipe
@@ -61,7 +68,7 @@ router.delete('/:recipeId', async (req, res, next) => {
 router.post('/:recipeId/copy', async (req, res, next) => {
   const recipe = await Recipe.findById({ _id: req.params.recipeId })
   const user = await User.findById(req.body.user)
-  const newRecipe = await user.createRecipe(recipe.title, recipe.ingredients)
+  const newRecipe = await req.user.createRecipe(recipe.title, recipe.ingredients)
   res.send(newRecipe)
 })
 
@@ -70,7 +77,7 @@ router.post('/:recipeId/notes', async (req, res, next) => {
   const recipe = await Recipe.findById({ _id: req.params.recipeId })
   const user = await User.findById(req.body.user)
 
-  const note = await user.addNote(req.body.note, recipe)
+  const note = await req.user.addNote(req.body.note, recipe)
   await req.recipe.save()
   await req.note.save()
 
