@@ -6,7 +6,7 @@ const URL = 'http://localhost:3001/'
 
 const alexander = new User('alexander', 'hello@all.com')
 
-// axios.get('http://localhost:3000/users').then(function (res) {
+// axios.get('/users').then(function (res) {
 //     console.log(res.data)
 // })
 

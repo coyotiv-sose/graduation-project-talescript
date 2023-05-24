@@ -21,7 +21,7 @@ export default {
   methods: {
     async submitRecipe() {
       // change to axiosURL
-      const response = await axios.post('http://localhost:3000/recipes', {
+      const response = await axios.post('/recipes', {
         name: data.ingredient.name,
         ingredients: data.ingredient.percentage
       })

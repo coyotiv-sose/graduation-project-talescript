@@ -22,8 +22,8 @@ export default {
     ...mapActions(useAccountStore, ['fetchUser', 'logout']),
     // ...mapActions(useSocketStore, ['init'])
     async createRecipe() {
-      // fetch('http://localhost:3000/recipes') isntead of json
-      // let res = await fetch('http://localhost:3000/recipes', {
+      // fetch('/recipes') isntead of json
+      // let res = await fetch('/recipes', {
       //   method: 'POST',
       //   headers: {
       //     'Content-Type': 'application/json'

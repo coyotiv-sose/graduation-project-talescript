@@ -9,7 +9,7 @@ export default {
     }
   },
   async created() {
-    const response = await axios.get('http://localhost:3000/recipes')
+    const response = await axios.get('/recipes')
     this.recipes = response.data
   }
 }

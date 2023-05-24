@@ -9,7 +9,7 @@ export default {
     }
   },
   async created() {
-    const response = await axios.get(`http://localhost:3000/recipes/${this.$route.params.id}`)
+    const response = await axios.get(`/recipes/${this.$route.params.id}`)
     this.recipe = response.data
   }
 }
