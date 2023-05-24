@@ -95,7 +95,7 @@ app.use(function (req, res, next) {
   req.session.numberOfVisits = numberOfVisits + 1
   req.session.history = req.session.history || []
   req.session.history.push({ url: req.url, ip: req.ip })
-  //console.log('session', req.session)
+  console.log('session', req.session)
   next()
 })
 
