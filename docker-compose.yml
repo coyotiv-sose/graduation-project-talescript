@@ -14,9 +14,9 @@ services:
       - ./backend/src:/app/src
     env_file:
       - backend/.env
-    # environment: # where is this defined?
-    #   - MONGODB_CONNECTION_STRING=$(MONGODB_CONNECTION_STRING)
-    # - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/sourdough
+    environment: # where is this defined?
+      # - MONGODB_CONNECTION_STRING=$(MONGODB_CONNECTION_STRING)
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/sourdough
 
   frontend:
     image: sourdough-frontend
