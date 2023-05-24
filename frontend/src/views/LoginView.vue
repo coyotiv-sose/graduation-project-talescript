@@ -1,5 +1,7 @@
 <script>
 import axios from 'axios'
+import { useAccountStore } from '../stores/account'
+import { mapActions } from 'pinia'
 
 export default {
   data() {
@@ -9,11 +11,9 @@ export default {
     }
   },
   methods: {
-    async login() {
-      await axios.post('/accounts/session', {
-        email: this.email,
-        password: this.password
-      })
+    ...mapActions(useAccountStore, ['login']),
+    async getlogin() {
+      await this.login(this.email, this.password)
       this.$router.push('/')
     }
   }
@@ -23,7 +23,7 @@ export default {
 <template>
   <p>Log in</p>
 
-  <form @submit.prevent="login">
+  <form @submit.prevent="getlogin">
     <label for="email">Email</label>
     <input type="email" id="email" v-model="email" />
 
