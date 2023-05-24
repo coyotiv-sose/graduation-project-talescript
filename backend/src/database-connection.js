@@ -3,5 +3,5 @@ const mongoose = require('mongoose')
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING)
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => console.log('Connected to MongoDB', process.env.MONGODB_CONNECTION_STRING))
   .catch(error => console.error(error))
