@@ -27,7 +27,7 @@ export const useAccountStore = defineStore('Account', {
     },
     async register(name, email, password) {
       this.user = (
-        await axios.post('/accounts/session', {
+        await axios.post('/accounts/register', {
           name: name,
           email: email,
           password: password
