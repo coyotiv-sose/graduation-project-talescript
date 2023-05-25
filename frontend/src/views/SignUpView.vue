@@ -21,8 +21,6 @@ export default {
 }
 </script>
 <template>
-  <p>Sign Up</p>
-
   <form @submit.prevent="getRegister">
     <label for="name">Name</label>
     <input type="name" id="name" v-model="name" />
