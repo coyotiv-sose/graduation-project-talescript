@@ -34,6 +34,11 @@ export default {
     <template v-for="note in recipe.notes" :key="note._id">
       <p>{{ note.recipeNotes }}</p>
     </template>
+    <form action="" method="post">
+      <label for="recipeNotes">Add a note:</label>
+      <input type="text" name="recipeNotes" id="recipeNotes" />
+      <button type="submit">Add Note</button>
+    </form>
   </div>
 </template>
 
