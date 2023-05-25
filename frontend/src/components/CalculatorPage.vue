@@ -36,10 +36,10 @@ export default {
         this.ingredient.name = ''
         this.ingredient.percentage = 0
       }
-
+      // calculate(e)
       e.preventDefault()
     }
-    // calculate(e) {
+    // calculate() {
     //   const recipe = new RecipeCreator({
     //     product: this.product,
     //     individualWeight: this.individualWeight,
@@ -48,7 +48,7 @@ export default {
 
     //   recipe.addIngredient(this.ingredient.name, this.ingredient.percentage)
 
-    //   recipe.creatRecipe()
+    //   recipe.createRecipe()
 
     //   this.totalPercentage = recipe.totalPercentage
     //   this.totalWeight = recipe.totalWeight
@@ -102,7 +102,7 @@ export default {
         </tr>
         <tr>
           <th>{{ product }}</th>
-          <th>{{ weight }}</th>
+          <!-- <th>{{ weight }}</th> -->
           <th>{{ quantity }}</th>
         </tr>
         <tr>
