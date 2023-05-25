@@ -1,0 +1,70 @@
+@startuml
+object User {
+  name = "John Doe"
+  recipes = [Recipe1, Recipe2]
+  notes = [Note1, Note2]
+  events = [Event1, Event2]
+  courses = [Course1, Course2]
+}
+
+object Recipe1 {
+  title = "Chocolate Cake"
+  ingredients = [{ quantity: 2, name: "eggs" }, { quantity: 200, name: "sugar" }]
+  notes = [Note1]
+}
+
+object Recipe2 {
+  title = "Apple Pie"
+  ingredients = [{ quantity: 4, name: "apples" }, { quantity: 250, name: "flour" }]
+  notes = [Note2]
+}
+
+object Note1 {
+  recipeNotes = "Add more chocolate for richer flavor"
+}
+
+object Note2 {
+  recipeNotes = "Reduce sugar for a healthier option"
+}
+
+object Event1 {
+  title = "Cooking Workshop"
+  description = "Learn how to bake cookies"
+  location = "Community Center"
+  date = "2023-06-10"
+  attendees = [User]
+}
+
+object Event2 {
+  title = "Baking Competition"
+  description = "Showcase your baking skills"
+  location = "Convention Center"
+  date = "2023-07-15"
+  attendees = [User]
+}
+
+object Course1 {
+  title = "Baking Basics"
+  description = "Learn the fundamentals of baking"
+  price = 100
+  startDate = "2023-09-01"
+  endDate = "2023-09-30"
+}
+
+object Course2 {
+  title = "Advanced Pastry"
+  description = "Master the art of pastry making"
+  price = 150
+  startDate = "2023-10-01"
+  endDate = "2023-10-31"
+}
+
+User --> Recipe1
+User --> Recipe2
+User --> Note1
+User --> Note2
+User --> Event1
+User --> Event2
+User --> Course1
+User --> Course2
+@enduml

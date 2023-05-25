@@ -1,0 +1,14 @@
+@startuml
+actor User
+
+User -> User: Log in
+User -> User: Create Recipe
+User -> Recipe: createRecipe(title, ingredients)
+Recipe --> User: newRecipe
+User -> User: View Recipes
+User -> Recipe: recipeDetails()
+User --> User: Recipe Details
+User -> User: Add Notes
+User -> Recipe: addNote(recipeNotes, recipe)
+Recipe --> User: note
+@enduml

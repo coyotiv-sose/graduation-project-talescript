@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+actor User
+rectangle "User" {
+  usecase "Create Recipe"
+  usecase "View Recipes"
+  usecase "Add Notes"
+  usecase "View Events"
+  usecase "Join Event"
+  usecase "Leave Event"
+}
+
+User --> "Create Recipe"
+User --> "View Recipes"
+User --> "Add Notes"
+User --> "View Events"
+User --> "Join Event"
+User --> "Leave Event"
+@enduml
