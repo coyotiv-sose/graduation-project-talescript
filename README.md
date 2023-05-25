@@ -37,7 +37,7 @@ Installation
 Install the dependencies using npm.
 
 ```sh
-npm install
+  npm install
 ```
 
 **Usage**
@@ -45,8 +45,8 @@ npm install
 To start the project
 
 ```sh
-    npm run noMore
-    npm run start
+  npm run noMore
+  npm run start
 ```
 
 The application can now be accessed by opening the browser and navigating to http://localhost:3000.
@@ -96,8 +96,8 @@ whenever you make a code change you
 have to build the image again
 
 ```sh
-docker build -t <name> -f Dockerfile .
-docker run <name>
+  docker build -t <name> -f Dockerfile .
+  docker run <name>
 ```
 
 To get access by the browser
