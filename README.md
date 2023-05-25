@@ -22,8 +22,9 @@ Features
 - Event Management: Users can view upcoming events, join events, and leave events.
 - User Authentication: Users can create an account, log in, and log out.
 
-**Getting Started**
-Prerequisites
+### Getting Started
+
+**Prerequisites**
 
 - Node.js (v14 or above)
 - MongoDB
@@ -64,7 +65,7 @@ Frontend
 - Vue Router
 - Other dependencies specified in the package.json file.
 
-Contributing
+**Contributing**
 
 Contributions to the Baker's Cookbook App are welcome! If you find any bugs, have feature requests, or want to contribute improvements, please follow the usual guidelines
 
@@ -111,12 +112,14 @@ To get access by the browser
   docker build -t <name> -f Dockerfile .
 
   docker rmi -f $(docker images -aq)
+
+  docker compose
 ```
 
-docker compose
 run a local copy of the database in development
-27017:27017 -> port 27017 on the host is mapped to port 27017 on the container
--d runs in the background
+
+`27017:27017` -> port `27017` on the host is mapped to port `27017` on the container
+`-d` runs in the background
 
 ```sh
   docker compose up
