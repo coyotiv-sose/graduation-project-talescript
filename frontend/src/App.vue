@@ -19,7 +19,7 @@ export default {
     // this.init()
   },
   methods: {
-    ...mapActions(useAccountStore, ['fetchUser', 'logout', 'register']),
+    ...mapActions(useAccountStore, ['fetchUser', 'logout']),
     // ...mapActions(useSocketStore, ['init'])
     async createRecipe() {
       // fetch('/recipes') isntead of json
