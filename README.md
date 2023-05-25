@@ -1,63 +1,82 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-f4981d0f882b2a3f0472912d15f9806d57e124e0fc890972558857b51b24a6f9.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10553841)
+# Bakers calculator App
 
-# Coyotiv School of Software Engineering
+### Table of Contents
 
-## Node & PlantUML Starter Template
+- Project Description
+- Features
+- Getting Started
+- Usage
+- Dependencies
+- Contributing
+- License
 
----
+### Project Description
+
+The Baker's Cookbook App is a web application designed to assist bakers in managing their recipes, notes, and events. It provides a user-friendly interface for creating, storing, and organizing recipes with the help of a baker's calculator. Users can also add notes to individual recipes, view upcoming events, join events, and manage their personal account.
+
+The application is built using Vue.js for the frontend, Node.js and Express.js for the backend, and MongoDB for the database. It leverages various technologies and libraries to provide an intuitive and seamless user experience for bakers of all skill levels.
+Features
+
+- Recipe Creation: Users can create recipes using a baker's calculator and save them.
+- Recipe Management: Users can view all recipes and add notes to individual recipes.
+- Event Management: Users can view upcoming events, join events, and leave events.
+- User Authentication: Users can create an account, log in, and log out.
+
+**Getting Started**
+Prerequisites
+
+- Node.js (v14 or above)
+- MongoDB
+
+Installation
+
+- Clone the repository.
+- Navigate to the project directory.
+- Install the dependencies using npm.
+
+Install the dependencies using npm.
+
+```sh
+npm install
+```
+
+**Usage**
+
+To start the project
+
+```sh
+    npm run noMore
+    npm run start
+```
+
+The application can now be accessed by opening the browser and navigating to http://localhost:3000.
+Dependencies
+Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Other dependencies specified in the package.json file.
+
+Frontend
+
+- Vue.js
+- Vue Router
+- Other dependencies specified in the package.json file.
+
+Contributing
+
+Contributions to the Baker's Cookbook App are welcome! If you find any bugs, have feature requests, or want to contribute improvements, please follow the usual guidelines
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Now you can directly work in your browser!
+## Legacy commands
 
-## Getting started
-
-### Node / JS
-
-> **Note:**
->
-> - _There is an **index.js** file located under the \*\*\_src_\*\* folder\_
-> - _The **index.js** file, it's already linked with the debugger in your **launch.json**_
-
-To run the **index.js** file:
-
-- with **_node_**, copy and enter one of the following commands on your terminal:
-
-  ```sh
-  npm start
-  ```
-
-  or:
-
-  ```sh
-  node src/index.js
-  ```
-
-- in development mode that restarts every time you save a file:
-
-  ```sh
-  npm run dev
-  ```
-
-### PlantUML
-
-> **Note:**
->
-> - There is a **class.puml** example file located in the **_architecture_** folder.
-
-To start working **_\*.puml_** files:
-
-- You can continue by editing the **class.puml** file
-- Add additional **_\*.puml_** files on that folder too.
-
-If you what to visualize a preview of the **class.puml** file or another **_\*.puml_** file on the project, please select the file and on your keyboard press the following keys:
-
-- _MacOS_: **Option + D**
-
-- _Linux/Windows_: **Alt + D**
-  The above commands will automatically open your a window and will show you live any updates that you make on the file.
+**Used while building the project**
 
 - _Docker_
+
+```sh
   docker run -it alpine sh
   -it -> interactive, terminal
 
@@ -71,13 +90,19 @@ If you what to visualize a preview of the **class.puml** file or another **_\*.p
   root }
 
   docker build -t <name> -f Dockerfile .
+```
 
-  whenever you make a code change you
-  have to build the image again
-  docker build -t <name> -f Dockerfile .
-  docker run <name>
+whenever you make a code change you
+have to build the image again
 
-  To get access by the browser
+```sh
+docker build -t <name> -f Dockerfile .
+docker run <name>
+```
+
+To get access by the browser
+
+```sh
   docker run -p 3000:3000 <name>
 
   docker run -p 3000:3000 -p 35729:35729 -e MONGODB_USERNAME -e MONGODB_PASSWORD -e
@@ -86,37 +111,14 @@ If you what to visualize a preview of the **class.puml** file or another **_\*.p
   docker build -t <name> -f Dockerfile .
 
   docker rmi -f $(docker images -aq)
+```
 
-  docker compose
-  run a local copy of the database in development
-  27017:27017 -> port 27017 on the host is mapped to port 27017 on the container
-  -d runs in the background
+docker compose
+run a local copy of the database in development
+27017:27017 -> port 27017 on the host is mapped to port 27017 on the container
+-d runs in the background
 
+```sh
   docker compose up
   docker-compose up --build
-
-  \_Now that we are ready, let's have some coding fun!\*
-
----
-
-## MIT License
-
-Copyright (c) 2022 Coyotiv
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+```
