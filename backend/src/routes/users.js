@@ -48,42 +48,4 @@ router.delete('/:userId', async (req, res, next) => {
   res.send(user)
 })
 
-// router.delete('/:userId', async (req, res, next) => {
-//   try {
-//     const deletedUser = await User.findByIdAndDelete(req.params.userId);
-
-//     if (!deletedUser) {
-//       return res.status(404).send('User not found');
-//     }
-
-//     res.status(200).json(deletedUser);
-//   } catch (error) {
-//     // Handle any errors that occur during deletion
-//     next(error);
-//   }
-// });
-
-// delete other properties of user / composition between classes
-
-/* router.post('/', function (req, res, next) {
-  const newUser = User.create(req.body.name, req.body.email);
-  res.send(newUser)
-})
- */
-
-// router.post('/:userId/recipes', (req, res, next) => {
-//   try {
-//     const user = User.list.find(user => user.name === req.params.userId)
-
-//     const recipe = user.createRecipe({
-//       title: req.body.title,
-//       date: req.body.date,
-//       ingredients: req.body.ingredients})
-//     // because of a circular error, send directly instead of the recipe
-//     res.send({title: recipe.name, date: recipe.date, ingredients: recipe.ingredients})
-//   } catch (err) {
-//     res.status(400).send(err.message)
-//   }
-// })
-
 module.exports = router

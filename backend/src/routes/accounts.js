@@ -19,12 +19,6 @@ router.post('/register', async function (req, res, next) {
   }
 })
 
-// router.post('/', async function (req, res, next) {
-//   const { name, email, password } = req.body
-//   const user = await User.register({ name, email }, password)
-//   res.send(user)
-// })
-
 router.post('/session', passport.authenticate('local', { failWithError: true }), function (req, res, next) {
   res.send(req.user)
 })

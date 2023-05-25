@@ -24,17 +24,9 @@ async function main() {
       name: 'bob',
       email: 'bob@me.com',
     })
-    .then(function (res) {
-      //console.log(res.data)
-    })
+    .then(function (res) {})
 
   const allUsers = await axios.get(URL + 'users')
-
-  // const alexanderRecipes = await axios.post(URL + 'users/alexander/recipes', {
-  //     title: 'Sweet and sour pork',
-  //     date: Date.now(),
-  //     ingredients: ['salt', 'butter', 'olives', 'water']
-  // })
 
   console.log('all users: ', allUsers.data)
   console.log(process.env.MONGODB_CONNECTION_STRING)
