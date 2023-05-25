@@ -1,12 +1,14 @@
 <script>
 import { mapActions } from 'pinia'
 import { eventStore } from '@/stores/event'
+import formattedDate from '../lib/time.js'
 
 export default {
   name: 'EventsView',
   data() {
     return {
-      events: []
+      events: [],
+      date: ''
     }
   },
   async created() {
@@ -14,6 +16,12 @@ export default {
   },
   methods: {
     ...mapActions(eventStore, ['fetchEvents'])
+  },
+  mixins: [formattedDate],
+  computed: {
+    formattedDate() {
+      return this.formatDate(this.date)
+    }
   }
 }
 </script>
@@ -35,7 +43,7 @@ export default {
             <li>{{ event.location }}</li>
           </li>
         </ul>
-        <footer>Date: {{ event.date }}</footer>
+        <footer>Date: {{ formatDate(event.date) }}</footer>
       </article>
     </template>
   </div>

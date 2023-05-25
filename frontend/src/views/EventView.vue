@@ -1,6 +1,7 @@
 <script>
 import { mapActions } from 'pinia'
 import { eventStore } from '@/stores/event'
+import formattedDate from '../lib/time.js'
 
 export default {
   name: 'EventsView',
@@ -25,6 +26,12 @@ export default {
       await this.leaveEvent(id)
       this.event.attendees.pop(this)
     }
+  },
+  mixins: [formattedDate],
+  computed: {
+    formattedDate() {
+      return this.formatDate(this.date)
+    }
   }
 }
 </script>
@@ -38,7 +45,7 @@ export default {
     <ul>
       <li>{{ event.description }}</li>
       <li>{{ event.location }}</li>
-      <li>{{ event.date }}</li>
+      <li>{{ formatDate(event.date) }}</li>
     </ul>
     <div class="grid">
       <button @click="join(event._id)">Join</button>
