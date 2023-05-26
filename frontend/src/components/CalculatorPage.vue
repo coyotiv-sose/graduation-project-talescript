@@ -101,9 +101,9 @@ export default {
         </tr>
         <tr>
           <th>{{ product }}</th>
-          <th>{{ individualWeight }}</th>
+          <th>{{ individualWeight }}g</th>
           <th>{{ quantity }}</th>
-          <th>{{ recipe ? recipe.totalWeight : 0 }}</th>
+          <th>{{ recipe ? recipe.totalWeight : 0 }}g</th>
         </tr>
         <tr>
           <td>
@@ -118,7 +118,7 @@ export default {
         <tr v-for="ingredient in ingredients" :key="ingredient._id">
           <th>{{ ingredient.name }}</th>
           <th>{{ ingredient.percentage }}%</th>
-          <td>{{ ingredient.weight }}</td>
+          <td>{{ ingredient.weight }}g</td>
         </tr>
       </table>
     </section>
