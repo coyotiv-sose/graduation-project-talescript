@@ -1,7 +1,9 @@
 <script>
-import axios from 'axios'
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = import.meta.env.VITE_API_URL
+
+import axios from 'axios'
+import formattedDate from '../lib/time.js'
 
 export default {
   name: 'RecipesView',
@@ -13,6 +15,12 @@ export default {
   async created() {
     const response = await axios.get('/recipes')
     this.recipes = response.data
+  },
+  mixins: [formattedDate],
+  computed: {
+    formattedDate() {
+      return this.formatDate(this.date)
+    }
   }
 }
 </script>
@@ -43,7 +51,7 @@ export default {
               }}
             </ul>
           </li>
-          <footer>{{ recipe.createdAt }}</footer>
+          <footer>{{ formatDate(recipe.createdAt) }}</footer>
         </article>
       </template>
     </ul>
