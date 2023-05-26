@@ -74,14 +74,13 @@ router.post('/:recipeId/copy', async (req, res, next) => {
 
 // create a note
 router.post('/:recipeId/notes', async (req, res, next) => {
-  const recipe = await Recipe.findById({ _id: req.params.recipeId })
-  const user = await User.findById(req.body.user)
+  const recipe = await Recipe.findById(req.params.recipeId)
+  const { note } = req.body
 
-  const note = await req.user.addNote(req.body.note, recipe)
-  await req.recipe.save()
-  await req.note.save()
+  recipe.notes.push(note)
+  await recipe.save()
 
-  res.send(note)
+  res.send(recipe)
 })
 
 // edit note for a recipe
