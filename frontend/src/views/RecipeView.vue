@@ -30,13 +30,17 @@ export default {
   methods: {
     ...mapActions(noteStore, ['fetchRecipe', 'addNote']),
     async submitNote() {
-      const response = await axios.post(`/recipes/${this.$route.params.id}`, {
-        recipeNotes: this.response.data
-      })
-      this.addNote({
-        recipeNotes: this.recipeNotes.response.data
-      })
-      this.recipeNotes = ''
+      try {
+        const response = await axios.post(`/recipes/${this.recipe._id}`, {
+          recipeNotes: this.recipeNotes
+        })
+        this.addNote({
+          recipeNotes: response.data
+        })
+        this.recipeNotes = ''
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }
