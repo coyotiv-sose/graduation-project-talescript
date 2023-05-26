@@ -97,11 +97,13 @@ export default {
           <th>Product Name</th>
           <th>Weight of each {{ product }}</th>
           <th>Quantity</th>
+          <th>Total Flour</th>
         </tr>
         <tr>
           <th>{{ product }}</th>
           <th>{{ individualWeight }}</th>
           <th>{{ quantity }}</th>
+          <th>{{ recipe ? recipe.totalWeight : 0 }}</th>
         </tr>
         <tr>
           <td>
@@ -119,15 +121,6 @@ export default {
           <td>{{ ingredient.weight }}</td>
         </tr>
       </table>
-      <h2>Recipe</h2>
-      <div>
-        <p>Product: {{ product }}</p>
-        <p>Quantity: {{ quantity }}</p>
-        <p>Individual weight: {{ individualWeight }}</p>
-        <p>Total percentage: {{ recipe ? recipe.totalPercentage : 0 }}</p>
-        <p>Total weight: {{ recipe ? recipe.totalWeight : 0 }}</p>
-        <p>Flour weight: {{ recipe ? recipe.flourWeight : 0 }}</p>
-      </div>
     </section>
   </div>
 </template>
