@@ -9,10 +9,10 @@ export const noteStore = defineStore('Notes', {
     async fetchRecipe() {
       return (await axios.get('/recipe')).data
     },
-    async fetchRecipe() {
+    async fetchRecipeById(id) {
       return (await axios.get(`/recipe/${id}`)).data
     },
-    async addNote(id) {
+    async addNoteById(id) {
       return (await axios.post(`${id}`)).data
     }
   }
