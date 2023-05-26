@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios'
-import { RecipeCreator } from 'bakers-math'
+import RecipeCreator from 'bakers-math'
 
 export default {
   data() {
@@ -15,46 +15,44 @@ export default {
         name: '',
         percentage: 0
       },
-      ingredients: []
+      ingredients: [],
+      recipe: null
     }
+  },
+  created() {
+    this.calculateRecipe()
   },
   methods: {
     async submitRecipe() {
       // change to axiosURL
-      const response = await axios.post('/recipes', {
-        name: this.ingredient.name,
-        ingredients: this.ingredient.percentage
-      })
+      if (this.recipe) {
+        const response = await axios.post('/recipes', this.recipe)
+      }
       // this.$router.push(`/recipes/${response.data._id}`)
     },
     addIngredient(e) {
       if (this.ingredient.name && this.ingredient.percentage > 0) {
         this.ingredients.push({
           name: this.ingredient.name,
-          percentage: this.ingredient.percentage
+          percentage: this.ingredient.percentage,
+          weight: 0
         })
         this.ingredient.name = ''
         this.ingredient.percentage = 0
+        this.calculateRecipe()
       }
-      // calculate(e)
       e.preventDefault()
+    },
+    calculateRecipe() {
+      const creator = new RecipeCreator(this.product, this.individualWeight, this.quantity)
+      for (const ingredient of this.ingredients) {
+        creator.addIngredient(ingredient.name, ingredient.percentage)
+      }
+      this.recipe = creator.createRecipe()
+      for (let i = 0; i < this.recipe.ingredients.length; i++) {
+        this.ingredients[i].weight = this.recipe.ingredients[i].weight
+      }
     }
-    // calculate() {
-    //   const recipe = new RecipeCreator({
-    //     product: this.product,
-    //     individualWeight: this.individualWeight,
-    //     quantity: this.quantity
-    //   })
-
-    //   recipe.addIngredient(this.ingredient.name, this.ingredient.percentage)
-
-    //   recipe.createRecipe()
-
-    //   this.totalPercentage = recipe.totalPercentage
-    //   this.totalWeight = recipe.totalWeight
-    //   this.flourWeight = recipe.flourWeight
-    //   e.preventDefault()
-    // }
   }
 }
 </script>
@@ -70,7 +68,7 @@ export default {
         </div>
         <div>
           <label for="weight">Weight of each {{ product }}</label>
-          <input type="number" name="weight" id="weight" v-model="weight" />
+          <input type="number" name="weight" id="weight" v-model="individualWeight" />
         </div>
         <div>
           <label for="quantity">How many are you making?</label>
@@ -97,12 +95,12 @@ export default {
       <table>
         <tr>
           <th>Product Name</th>
-          <th>Weight</th>
+          <th>Weight of each {{ product }}</th>
           <th>Quantity</th>
         </tr>
         <tr>
           <th>{{ product }}</th>
-          <!-- <th>{{ weight }}</th> -->
+          <th>{{ individualWeight }}</th>
           <th>{{ quantity }}</th>
         </tr>
         <tr>
@@ -113,10 +111,12 @@ export default {
         <tr>
           <th>Ingredient</th>
           <th>Percentage</th>
+          <th>Weight</th>
         </tr>
         <tr v-for="ingredient in ingredients" :key="ingredient._id">
           <th>{{ ingredient.name }}</th>
           <th>{{ ingredient.percentage }}%</th>
+          <td>{{ ingredient.weight }}</td>
         </tr>
       </table>
       <h2>Recipe</h2>
@@ -124,13 +124,9 @@ export default {
         <p>Product: {{ product }}</p>
         <p>Quantity: {{ quantity }}</p>
         <p>Individual weight: {{ individualWeight }}</p>
-        <!-- not calculated -->
-        <p>Total percentage: {{ totalPercentage }}</p>
-        <!-- not calculated -->
-        <p>Total weight: {{ totalWeight }}</p>
-        <!-- not calculated -->
-        <p>Flour weight: {{ flourWeight }}</p>
-        <!-- not calculated -->
+        <p>Total percentage: {{ recipe ? recipe.totalPercentage : 0 }}</p>
+        <p>Total weight: {{ recipe ? recipe.totalWeight : 0 }}</p>
+        <p>Flour weight: {{ recipe ? recipe.flourWeight : 0 }}</p>
       </div>
     </section>
   </div>
